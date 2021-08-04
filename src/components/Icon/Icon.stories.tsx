@@ -8,5 +8,9 @@ export default {
 } as ComponentMeta<typeof Icon>;
 
 export const SampleIcon = ():JSX.Element => {
-    return <Icon />
+    return <Icon type="Logo"/>
+}
+
+export const MapIcon = ():JSX.Element => {
+    return <Icon type="NomadMap"/>
 } 

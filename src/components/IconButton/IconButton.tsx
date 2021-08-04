@@ -15,7 +15,7 @@ function IconButton({ type, onClick, className}: IconButtonProps): JSX.Element {
 
     return (
         <button type={type} onClick={onClick} className={styleClass}> 
-            <Icon />
+            <Icon type="Logo"/>
         </button>
     )
 }
