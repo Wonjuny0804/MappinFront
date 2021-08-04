@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from "classnames";
 import {Icon} from "../";
-import { button } from "./IconButton.module.scss";
+import { btn } from "./IconButton.module.scss";
 
 interface IconButtonProps extends React.HTMLProps<HTMLButtonElement> {
     type: "button" | "submit" | "reset";
@@ -11,7 +11,7 @@ interface IconButtonProps extends React.HTMLProps<HTMLButtonElement> {
 
 function IconButton({ type, onClick, className}: IconButtonProps): JSX.Element {
 
-    const styleClass = classNames(button, className);
+    const styleClass = classNames(btn, className);
 
     return (
         <button type={type} onClick={onClick} className={styleClass}> 
