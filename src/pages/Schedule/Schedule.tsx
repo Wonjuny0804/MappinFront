@@ -3,8 +3,9 @@ import "react-dates/initialize";
 import { DayPickerRangeController, FocusInputShape } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import "moment/locale/ko";
-import styles from "./Schedule.module.scss";
 import moment, { Moment } from "moment";
+import styles from "./Schedule.module.scss";
+import PageNav from "../../components/PageNav/PageNav";
 
 function Schedule() {
   const [startDate, setStartDate] = useState<Moment | null>(null);
@@ -71,6 +72,7 @@ function Schedule() {
           daySize={60}
         />
       </section>
+      <PageNav />
     </div>
   );
 }
