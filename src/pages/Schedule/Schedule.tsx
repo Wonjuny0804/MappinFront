@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "react-dates/initialize";
-import { DayPickerRangeController, FocusInputShape } from "react-dates";
+import { DayPickerRangeController, FocusedInputShape } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
 import "moment/locale/ko";
 import moment, { Moment } from "moment";
@@ -10,7 +10,7 @@ import PageNav from "../../components/PageNav/PageNav";
 function Schedule() {
   const [startDate, setStartDate] = useState<Moment | null>(null);
   const [endDate, setEndDate] = useState<Moment | null>(null);
-  const [focus, setFocus] = useState<FocusInputShape | null>("startDate");
+  const [focus, setFocus] = useState<FocusedInputShape | null>("startDate");
 
   const handleOnDateChange = (args: {
     startDate: Moment | null;
@@ -63,13 +63,14 @@ function Schedule() {
           endDate={endDate}
           onDatesChange={handleOnDateChange}
           focusedInput={focus}
-          onFocusChange={(focus: FocusInputShape | null) =>
+          onFocusChange={(focus: FocusedInputShape | null) =>
             setFocus(focus || "startDate")
           }
           hideKeyboardShortcutsPanel
           numberOfMonths={1}
           isOutsideRange={(day: Moment) => day.isSameOrBefore(moment())}
           daySize={60}
+          initialVisibleMonth={6}
         />
       </section>
       <PageNav />

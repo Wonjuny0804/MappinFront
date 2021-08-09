@@ -1,14 +1,17 @@
 import React from 'react';
-
+import { Switch, Route } from "react-router-dom";
+import {
+  Home,
+  Schedule
+} from "../pages";
 
 function App() {
   return (
     <div className="App">
-      okay I am working now
-
-      <p>
-        There might be something wrong with the system I think
-      </p>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route exact path="/schedule" component={Schedule}/>
+      </Switch>
     </div>
   );
 }
