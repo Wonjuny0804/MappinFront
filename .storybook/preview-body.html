@@ -1,10 +1,97 @@
 <style>
-   body {
-  margin: 0;
-  font-family: "Spoqa Han Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-   }
+  body {
+    margin: 0;
+    font-family: "Spoqa Han Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  .DayPicker__withBorder {
+    border-radius: 17px;
+  }
+
+  .CalendarDay__selected {
+    border: none;
+  }
+  .CalendarDay__default:hover,
+  .CalendarDay__selected_span {
+    background-color: rgba(96, 209, 169, 0.1);
+  }
+
+  .CalendarDay__default:hover {
+    border-radius: 50%;
+    position: relative;
+    z-index: 0;
+  }
+
+  .CalendarDay__hovered_span:hover,
+  .CalendarDay__hovered_span {
+    background: rgb(240 250 246);
+  }
+
+  .CalendarDay__selected_span:active,
+  .CalendarDay__selected_span:hover {
+    color: #000;
+    background: rgb(240 250 246);
+  }
+
+  .CalendarDay__selected_start,
+  .CalendarDay__selected_end {
+    border-radius: 50%;
+    position: relative;
+    z-index: 0;
+  }
+  .CalendarDay__selected_start:before,
+  .CalendarDay__selected_end:before {
+    display: block;
+    position: absolute;
+    content: "";
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgb(240 250 246);
+    z-index: -1;
+  }
+
+  .CalendarDay__selected_end:before {
+    left: 0%;
+    right: 50%;
+  }
+
+  .CalendarDay__selected_start:after,
+  .CalendarDay__selected_end:after {
+    border: 1px solid #60d1a9;
+    display: block;
+    position: absolute;
+    content: "";
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    background: rgba(96, 209, 169, 0.1);
+    z-index: -1;
+    border-radius: 50%;
+  }
+  .CalendarDay__selected_span {
+    color: #000;
+    border: none;
+  }
+
+  .CalendarDay__selected,
+  .CalendarDay__selected:active,
+  .CalendarDay__selected:hover {
+    color: #000;
+    background-color: rgba(96, 209, 169, 0.1);
+  }
+
+  .CalendarDay__selected_span:last-of-type {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
+  .CalendarDay__selected_span:first-of-type {
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+  }
 </style>
