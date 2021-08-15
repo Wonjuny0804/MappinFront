@@ -12,12 +12,20 @@ function SearchInput():JSX.Element {
     const labelRef = useRef<HTMLLabelElement>(null);
 
     const handleWrapperClick = ():void => {
-        labelRef.current.style.display = "none";
-        inputRef.current.focus();
+        if(labelRef.current) labelRef.current.style.display = "none";
+        inputRef.current && inputRef.current.focus();
     }
 
     useEffect(() => {
         
+        inputRef.current?.addEventListener("blur", (e: React.BlurEvent<HTMLInputElement>):void => {
+            if (target) {
+                
+                if (target.value === "")
+
+            }
+        });
+
     }, [])
 
     return (
