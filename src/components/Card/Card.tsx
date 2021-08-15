@@ -1,9 +1,7 @@
-import React from "react";
-import className from "classnames";
 import styles from "./Card.module.scss";
 
 interface CardProps {
-  children?: string | Node;
+  children?: string | Node | JSX.Element;
 }
 
 function Card({ children }: CardProps): JSX.Element {

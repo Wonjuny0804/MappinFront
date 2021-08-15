@@ -4,9 +4,10 @@ import { ReactComponent as NomadMap } from "./assets/Nomads_Map.svg";
 import { ReactComponent as Prev } from "./assets/prev.svg";
 import { ReactComponent as Next } from "./assets/next.svg";
 import { ReactComponent as Search } from "./assets/search.svg";
+import { ReactComponent as Ellipse } from "./assets/Ellipse.svg";
 
 interface IconProps {
-  type: "Logo" | "NomadMap" | "Prev" | "Next" | "Search";
+  type: "Logo" | "NomadMap" | "Prev" | "Next" | "Search" | "Ellipse";
 }
 
 function Icon({ type }: IconProps): JSX.Element {
@@ -15,7 +16,8 @@ function Icon({ type }: IconProps): JSX.Element {
     NomadMap: <NomadMap />,
     Prev: <Prev />,
     Next: <Next />,
-    Search: <Search />
+    Search: <Search />,
+    Ellipse: <Ellipse />,
   };
 
   return dataObject[type];
