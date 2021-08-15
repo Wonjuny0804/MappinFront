@@ -1,0 +1,31 @@
+.content {
+  display: flex;
+  padding: 18px 35px;
+  position: relative;
+  img {
+    margin: 0 44px 0 22px;
+    border-radius: 10px;
+    width: 166px;
+    height: 166px;
+  }
+  .details {
+    display: flex;
+    flex-flow: column wrap;
+    h2 {
+      margin: 0;
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+    .keyword {
+      display: flex;
+      span {
+        margin-right: 6px;
+      }
+    }
+    p {
+      max-width: 480px;
+      font-size: 18px;
+      color: #707070;
+    }
+  }
+}
