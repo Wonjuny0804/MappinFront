@@ -6,11 +6,14 @@ import "moment/locale/ko";
 import moment, { Moment } from "moment";
 import styles from "./Schedule.module.scss";
 import PageNav from "../../components/PageNav/PageNav";
+import { useHistory } from "react-router-dom";
 
 function Schedule() {
   const [startDate, setStartDate] = useState<Moment | null>(null);
   const [endDate, setEndDate] = useState<Moment | null>(null);
   const [focus, setFocus] = useState<FocusedInputShape | null>("startDate");
+
+  const history = useHistory();
 
   const handleOnDateChange = (args: {
     startDate: Moment | null;
@@ -27,6 +30,10 @@ function Schedule() {
   const containerStyle = startDate
     ? { maxWidth: "215px" }
     : { maxWidth: "144px" };
+
+  const handleOnGoBack = ():void => {
+    history.push("/");
+  }
 
   return (
     <div className={styles.schedule}>
@@ -70,10 +77,10 @@ function Schedule() {
           numberOfMonths={1}
           isOutsideRange={(day: Moment) => day.isSameOrBefore(moment())}
           daySize={60}
-          initialVisibleMonth={6}
+          initialVisibleMonth={() => moment()}
         />
       </section>
-      <PageNav />
+      <PageNav prevOnClick={handleOnGoBack}/>
     </div>
   );
 }

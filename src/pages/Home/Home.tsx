@@ -1,8 +1,16 @@
 import React from 'react';
 import { Icon, Button } from "../../components";
 import styles from "./Home.module.scss";
+import { useHistory } from "react-router-dom";
 
 function Home() {
+
+    const history = useHistory();
+
+    const handleOnClick = (): void => {
+        history.push("/schedule")
+    }
+
     return (
         <div>
             <header className={styles.header}>
@@ -17,7 +25,7 @@ function Home() {
                 <div className={styles.trips}>
                     <Icon type="NomadMap"/>
                     <p>여행 일정을 만들어보세요!</p>
-                    <Button type="button" children="일정 만들기" secondary={false} styling={styles.button}/>
+                    <Button type="button" children="일정 만들기" secondary={false} styling={styles.button} onClick={handleOnClick}/>
                 </div>
             </section>
         </div>
