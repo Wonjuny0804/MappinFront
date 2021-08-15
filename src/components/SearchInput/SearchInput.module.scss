@@ -1,0 +1,34 @@
+.inputWrapper {
+  border: 3px solid #60d1a9;
+  border-radius: 45px;
+  background-color: #ffffff;
+  font-family: "Spoqa Han Sans Neo";
+  position: relative;
+  overflow: hidden;
+  padding: 25px 38px;
+  display: flex;
+  align-items: center;
+  height: 40px;
+}
+
+.label {
+  color: #aeaeae;
+  font-weight: 700;
+  font-size: 22px;
+  //   position: absolute;
+  margin-left: 24px;
+  white-space: nowrap;
+}
+
+.input {
+  border: none;
+  height: 100%;
+  width: 80%;
+  background-color: transparent;
+  margin-left: 24px;
+  font-size: 24px;
+  color: #aeaeae;
+  font-family: "Spoqa Han Sans Neo";
+  outline: none;
+  -webkit-appearance: none;
+}
