@@ -6,7 +6,7 @@ import { ReactComponent as Next } from "./assets/next.svg";
 import { ReactComponent as Search } from "./assets/search.svg";
 import { ReactComponent as Ellipse } from "./assets/Ellipse.svg";
 
-interface IconProps {
+export interface IconProps {
   type: "Logo" | "NomadMap" | "Prev" | "Next" | "Search" | "Ellipse";
 }
 

@@ -8,5 +8,5 @@ export default {
 } as ComponentMeta<typeof IconButton>
 
 export const SampleButton = ():JSX.Element => {
-    return <IconButton type="button"/>
+    return <IconButton type="button" icon="Logo"/>
 }
