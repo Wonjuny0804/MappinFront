@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
+import styles from "./App.module.scss"
 import {
   Home,
   Schedule
@@ -16,7 +17,7 @@ function App() {
         <Route exact path="/schedule" component={Schedule}/>
       </Switch>
 
-      <footer style={{height: "400px; width: 100%"}}></footer>
+      <footer className={styles.footer}></footer>
     </div>
   );
 }
