@@ -6,6 +6,7 @@ import {
   Schedule
 } from "../pages";
 import { NavBar } from "../components/";
+import Search from '../pages/Search/Search';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/schedule" component={Schedule}/>
+        <Route path="/search" component={Search} />
       </Switch>
 
       <footer className={styles.footer}></footer>
