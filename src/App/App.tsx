@@ -16,7 +16,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route exact path="/schedule" component={Schedule}/>
-        <Route path="/search" component={Search} />
+        <Route exact path="/search" component={Search} />
       </Switch>
 
       <footer className={styles.footer}></footer>
