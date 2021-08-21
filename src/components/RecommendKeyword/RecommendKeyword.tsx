@@ -3,7 +3,7 @@ import styles from "./RecommendKeyword.module.scss";
 
 interface RecommendKeywordProps {
   keywords : Array<string>;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 function RecommendKeyword({ keywords, onClick }: RecommendKeywordProps): JSX.Element {
