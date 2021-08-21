@@ -1,0 +1,38 @@
+.cardWrapper {
+  background: #ffffff;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
+  border-radius: 15px;
+  max-width: 384px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    font-size: 18px;
+  }
+
+  button {
+    font: "Spoqa Han sans";
+    color: #60d1a9;
+    font-weight: 400;
+    font-size: 15px;
+    background: rgba(96, 209, 169, 0.07);
+    border: 1px solid #60d1a9;
+    box-sizing: border-box;
+    border-radius: 23.75px;
+    padding: 6px 22px;
+    cursor: pointer;
+  }
+}
+
+.keywordsWrapper {
+  margin: 0 37px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  button {
+    margin-right: 12px;
+    margin-bottom: 12px;
+  }
+}
