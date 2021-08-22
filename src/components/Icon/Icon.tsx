@@ -11,7 +11,7 @@ import { ReactComponent as Kakao } from "./assets/Kakao.svg";
 import { ReactComponent as Facebook } from "./assets/Facebook.svg";
 import { ReactComponent as Naver } from "./assets/Naver.svg";
 
-interface IconProps {
+export interface IconProps {
   type:
     | "Logo"
     | "NomadMap"
