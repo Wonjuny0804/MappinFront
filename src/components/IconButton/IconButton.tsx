@@ -18,7 +18,7 @@ function IconButton({
 
   return (
     <button type={type} onClick={onClick} className={styleClass}>
-      <Icon type="Logo" style={{ width: "50px" }} />
+      <Icon type="Logo" />
     </button>
   );
 }

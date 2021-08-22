@@ -1,0 +1,36 @@
+.cardWrapper {
+  width: 281px;
+  height: 282px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease 0s;
+
+  &:hover {
+    box-shadow: rgb(0 0 0 / 10%) 0px 6px 12px;
+  }
+}
+
+.image {
+  height: 190px;
+}
+
+.information {
+  background-color: #ffffff;
+  padding: 18px 23px;
+
+  h1 {
+    margin: 0;
+    color: #000000;
+    font-weight: 400;
+    font-size: 18px;
+  }
+
+  p {
+    margin: 0;
+    margin-top: 13px;
+    color: #707070;
+    font-size: 18px;
+  }
+}

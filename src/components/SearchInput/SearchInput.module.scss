@@ -9,6 +9,9 @@
   display: flex;
   align-items: center;
   height: 40px;
+  width: 100%;
+  max-width: 996px;
+  cursor: pointer;
 
   svg {
     flex-shrink: 0;
@@ -19,7 +22,6 @@
   color: #aeaeae;
   font-weight: 700;
   font-size: 22px;
-  //   position: absolute;
   margin-left: 24px;
   white-space: nowrap;
 }

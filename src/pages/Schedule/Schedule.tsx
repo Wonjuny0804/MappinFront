@@ -6,7 +6,7 @@ import "moment/locale/ko";
 import moment, { Moment } from "moment";
 import styles from "./Schedule.module.scss";
 import PageNav from "../../components/PageNav/PageNav";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 function Schedule() {
   const [startDate, setStartDate] = useState<Moment | null>(null);
@@ -35,13 +35,17 @@ function Schedule() {
     history.push("/");
   }
 
+  const handleOnNext = ():void => {
+    history.push("/search");
+  }
+
   return (
     <div className={styles.schedule}>
       <header className={styles.header}>
         <h1 className={styles.headerTitle}>여행 일정 만들기</h1>
         <div className={styles.headerPhrase}>
-          <p>일정을 선택해 여행 계획을 세워보세요! :)</p>
-          <a href="#">나중에 하기</a> {/*링크로 교체*/}
+          <p>일정을 선택해 여행 계획을 세워보세요! :</p>
+          <Link to="/search">나중에 하기</Link> {/*링크로 교체*/}
         </div>
       </header>
       <div className={styles.input}>
@@ -80,7 +84,7 @@ function Schedule() {
           initialVisibleMonth={() => moment()}
         />
       </section>
-      <PageNav prevOnClick={handleOnGoBack}/>
+      <PageNav prevOnClick={handleOnGoBack} nextOnClick={handleOnNext}/>
     </div>
   );
 }
