@@ -1,0 +1,40 @@
+.share {
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  align-items: center;
+  h3 {
+    color: #909090;
+    font-size: 18px;
+  }
+  .container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 42px 0 32px 0;
+    max-width: 383px;
+  }
+  .kakao,
+  .naver,
+  .facebook {
+    border: none;
+  }
+  .kakao {
+    background-color: #fbbc05;
+  }
+  .naver {
+    background-color: #06be34;
+  }
+  .facebook {
+    background-color: #4285f4;
+  }
+
+  input {
+    width: 100%;
+    max-width: 383px;
+    height: 55px;
+    border: 2px solid #aeaeae;
+    border-radius: 15px;
+    padding: 0 15px;
+  }
+}

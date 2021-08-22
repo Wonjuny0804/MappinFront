@@ -4,18 +4,20 @@ import styles from "./Button.module.scss";
 
 interface ButtonProps {
   type: "submit" | "button" | "reset";
-  secondary: boolean;
+  secondary?: boolean;
   styling?: string;
+  rounded?: boolean;
   disabled?: boolean;
   name?: string;
   value?: string;
-  children?: string | Node;
+  children?: string | Node | JSX.Element;
   onClick?: () => void;
 }
 
 function Button({
   type,
   secondary,
+  rounded,
   disabled,
   name,
   value,
@@ -25,6 +27,7 @@ function Button({
 }: ButtonProps): JSX.Element {
   const btnStyle = className(
     secondary ? styles.secondary : styles.defaultBtn,
+    rounded && styles.rounded,
     styling
   );
 
