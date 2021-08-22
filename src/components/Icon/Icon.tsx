@@ -5,9 +5,25 @@ import { ReactComponent as Prev } from "./assets/prev.svg";
 import { ReactComponent as Next } from "./assets/next.svg";
 import { ReactComponent as Search } from "./assets/search.svg";
 import { ReactComponent as Ellipse } from "./assets/Ellipse.svg";
+import { ReactComponent as Close } from "./assets/Close.svg";
+import { ReactComponent as Share } from "./assets/Share.svg";
+import { ReactComponent as Kakao } from "./assets/Kakao.svg";
+import { ReactComponent as Facebook } from "./assets/Facebook.svg";
+import { ReactComponent as Naver } from "./assets/Naver.svg";
 
 export interface IconProps {
-  type: "Logo" | "NomadMap" | "Prev" | "Next" | "Search" | "Ellipse";
+  type:
+    | "Logo"
+    | "NomadMap"
+    | "Prev"
+    | "Next"
+    | "Search"
+    | "Ellipse"
+    | "Close"
+    | "Share"
+    | "Kakao"
+    | "Naver"
+    | "Facebook";
 }
 
 function Icon({ type }: IconProps): JSX.Element {
@@ -18,6 +34,11 @@ function Icon({ type }: IconProps): JSX.Element {
     Next: <Next />,
     Search: <Search />,
     Ellipse: <Ellipse />,
+    Close: <Close />,
+    Share: <Share />,
+    Kakao: <Kakao />,
+    Naver: <Naver />,
+    Facebook: <Facebook />,
   };
 
   return dataObject[type];
