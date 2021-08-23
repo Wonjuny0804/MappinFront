@@ -8,5 +8,5 @@ export default {
 } as ComponentMeta<typeof Map>;
 
 export const SampleMap = ():JSX.Element => {
-  return <Map />
+  return <Map />;
 }
