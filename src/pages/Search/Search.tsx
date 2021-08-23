@@ -13,6 +13,7 @@ function Search() {
   const [recommendWords, setRecommendWords] = useState<
     Array<{ name: string; url: string }>
   >([]);
+
   const [keywords, setKeywords] = useState<Array<Array<string>>>([]);
 
   const history = useHistory();
