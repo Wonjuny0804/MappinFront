@@ -1,31 +1,8 @@
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 70px 0;
+.themeColor {
+  background: linear-gradient(to right, #60d1a9, #31e0df);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-.headerTitle {
-  font-size: 46px;
-  font-weight: 700;
-}
-
-.headerPhrase {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 32px;
-
-  p {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 400;
-    color: #707070;
-  }
-}
-
 .service {
   width: 1200px;
   margin: auto;

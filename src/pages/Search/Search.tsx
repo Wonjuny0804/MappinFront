@@ -4,8 +4,10 @@ import {
   RecommendCard,
   RecommendKeyword,
   IconButton,
+  PageNav,
 } from "../../components/";
 import styles from "./Search.module.scss";
+import commonStyles from "../../styles/common.module.scss";
 import { useHistory } from "react-router-dom";
 import Map from "../../components/Map/Map";
 
@@ -25,9 +27,11 @@ function Search() {
 
   return (
     <main className={styles.pageLayout}>
-      <div className={styles.header}>
-        <h1>관광지 검색</h1>
-        <h2>꼭 가고 싶은 장소 검색을 통해 일정을 추천받아보세요.</h2>
+      <div className={commonStyles.header}>
+        <h1 className={commonStyles.headerTitle}>관광지 검색</h1>
+        <div className={commonStyles.headerPhrase}>
+          <p>꼭 가고 싶은 장소 검색을 통해 일정을 추천받아보세요.</p>
+        </div>
       </div>
       <SearchInput />
       <section className={styles.recommendWord}>
@@ -52,13 +56,13 @@ function Search() {
         </div>
         <Map />
       </section>
-
-      <IconButton
+      <PageNav prevOnClick={handleOnGoBack} />
+      {/* <IconButton
         type="button"
         onClick={handleOnGoBack}
         icon="Prev"
         className={styles.goBack}
-      />
+      /> */}
     </main>
   );
 }
