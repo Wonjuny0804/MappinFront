@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
-  SearchInput,
+  Input,
   RecommendCard,
   RecommendKeyword,
   IconButton,
   PageNav,
+  Icon,
 } from "../../components/";
 import styles from "./Search.module.scss";
 import commonStyles from "../../styles/common.module.scss";
@@ -33,7 +34,13 @@ function Search() {
           <p>꼭 가고 싶은 장소 검색을 통해 일정을 추천받아보세요.</p>
         </div>
       </div>
-      <SearchInput />
+      <Input
+        id="searchInput"
+        name="search"
+        type="search"
+        label="가고싶은 곳을 검색해 보세요"
+        icon={<Icon type="Search" />}
+      />
       <section className={styles.recommendWord}>
         <h2>추천 검색어</h2>
         <div>
@@ -54,7 +61,7 @@ function Search() {
               />
             ))}
         </div>
-        <Map />
+        {/* <Map /> */}
       </section>
       <PageNav prevOnClick={handleOnGoBack} />
       {/* <IconButton
