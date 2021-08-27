@@ -1,4 +1,5 @@
 import axios from "axios";
+import { clear, error, success } from "./alert";
 
 const LOGIN_REQUEST = "로그인 요청";
 const LOGIN_SUCCESS = "로그인 성공";
@@ -19,6 +20,10 @@ const initialState = {
 export const signOutAction = () => (dispatch: any) => {
   localStorage.removeItem("token");
   dispatch({ type: LOGOUT });
+  dispatch(success("성공적으로 로그아웃 되었습니다"));
+  setTimeout(() => {
+    dispatch(clear());
+  }, 3000);
 };
 
 export const fetchProfile = () => {
@@ -39,7 +44,15 @@ export const fetchProfile = () => {
           }
           dispatch({ type: LOGIN_SUCCESS, user: data.data });
         })
-        .catch((error) => dispatch({ type: LOGIN_FAILURE }));
+        .catch((err) => {
+          dispatch({
+            type: LOGIN_FAILURE,
+          });
+          dispatch(error("프로필 정보 요청중 에러가 발생했습니다"));
+          setTimeout(() => {
+            dispatch(clear());
+          }, 3000);
+        });
     }
   };
 };
@@ -58,8 +71,17 @@ export const signInAction = (email: string, password: string) => {
       .then(({ data }) => {
         localStorage.setItem("token", data.data.token);
         dispatch(fetchProfile());
+        dispatch(success("성공적으로 로그인 되었습니다"));
+        setTimeout(() => {
+          dispatch(clear());
+        }, 3000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        dispatch(error("유저 정보를 찾을수 없습니다"));
+        setTimeout(() => {
+          dispatch(clear());
+        }, 3000);
+      });
   };
 };
 

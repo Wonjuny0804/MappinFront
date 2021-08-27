@@ -11,9 +11,7 @@ import { SubmitHandler } from "react-hook-form";
 function NavBar() {
   const history = useHistory();
   const [isModalVisible, setModalVisibility] = useState(false);
-  const { user, loggingIn } = useSelector(
-    (state: RootStateOrAny) => state.auth
-  );
+  const { user } = useSelector((state: RootStateOrAny) => state.auth);
   const dispatch = useDispatch();
 
   const openModal = () => {
