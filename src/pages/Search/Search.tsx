@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
-  Input,
+  SearchInput,
   RecommendCard,
   RecommendKeyword,
   IconButton,
@@ -34,7 +34,7 @@ function Search() {
           <p>꼭 가고 싶은 장소 검색을 통해 일정을 추천받아보세요.</p>
         </div>
       </div>
-      <Input
+      <SearchInput
         id="searchInput"
         name="search"
         type="search"

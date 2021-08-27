@@ -1,6 +1,5 @@
 import React, { useRef } from "react";
-import styles from "./Input.module.scss";
-
+import styles from "./SearchInput.module.scss";
 
 interface InputProps {
   name: String;
@@ -14,7 +13,7 @@ interface InputProps {
   [x: string]: any;
 }
 
-function Input({
+function SearchInput({
   id,
   type,
   icon,
@@ -69,4 +68,4 @@ function Input({
   );
 }
 
-export default Input;
+export default SearchInput;
