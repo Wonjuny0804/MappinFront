@@ -4,9 +4,11 @@ import styles from "./Home.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import { useHistory } from "react-router-dom";
 import classNames from "classnames";
+import { RootStateOrAny, useSelector } from "react-redux";
 
 function Home() {
   const history = useHistory();
+  const { user } = useSelector((state: RootStateOrAny) => state.auth);
 
   const handleOnClick = (): void => {
     history.push("/schedule");
@@ -24,7 +26,9 @@ function Home() {
         </div>
       </header>
       <section className={styles.service}>
-        <h2 className={styles.serviceTitle}>장원준님의 여행 일정</h2>
+        {user && (
+          <h2 className={styles.serviceTitle}>{user.nickName}님의 여행 일정</h2>
+        )}
         <div className={styles.trips}>
           <Icon type="NomadMap" />
           <p>여행 일정을 만들어보세요!</p>

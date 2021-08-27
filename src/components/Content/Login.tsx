@@ -1,30 +1,30 @@
-import React from "react";
 import Button from "../Button/Button";
-import Icon from "../Icon/Icon";
-import Input from "../Input/Input";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import styles from "./Login.module.scss";
+import { SubmitHandler } from "react-hook-form";
 
 type FormValues = {
   email: string;
   password: string;
 };
 
-const Login = () => {
+type LoginProps = {
+  handleLogin: SubmitHandler<FormValues>;
+};
+
+const Login = ({ handleLogin }: LoginProps) => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    formState: { errors }, // 에러처리 추가
   } = useForm<FormValues>();
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
 
   return (
     <div>
       <form
         autoComplete="off"
         className={styles.form}
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(handleLogin)}
       >
         <input
           {...register("email")}
