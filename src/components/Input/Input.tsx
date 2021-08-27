@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
-
 import styles from "./Input.module.scss";
+
 
 interface InputProps {
   name: String;
