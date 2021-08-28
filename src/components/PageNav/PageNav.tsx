@@ -12,8 +12,12 @@ interface PageNavProps {
 function PageNav({ prevOnClick, nextOnClick }: PageNavProps): JSX.Element {
   return (
     <nav className={styles.nav}>
-      <IconButton type="button" icon="Prev" onClick={prevOnClick}/>
-      <IconButton type="button" icon="Next" onClick={nextOnClick}/>
+      {prevOnClick && (
+        <IconButton type="button" icon="Prev" onClick={prevOnClick} />
+      )}
+      {nextOnClick && (
+        <IconButton type="button" icon="Next" onClick={nextOnClick} />
+      )}
     </nav>
   );
 }

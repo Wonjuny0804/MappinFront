@@ -1,10 +1,15 @@
 .nav {
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;
   border-bottom: 1.25px solid #dfdfdf;
-  padding: 20px 0;
-  justify-content: space-around;
+  .inner {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+
+    padding: 20px 0;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 }
 
 .buttonAlign {

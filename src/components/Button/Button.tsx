@@ -1,6 +1,7 @@
 import React from "react";
 import className from "classnames";
 import styles from "./Button.module.scss";
+import Icon from "../Icon/Icon";
 
 interface ButtonProps {
   type: "submit" | "button" | "reset";
@@ -10,6 +11,7 @@ interface ButtonProps {
   disabled?: boolean;
   name?: string;
   value?: string;
+  loading?: boolean;
   children?: string | Node | JSX.Element;
   onClick?: () => void;
 }
@@ -23,6 +25,7 @@ function Button({
   value,
   styling,
   onClick,
+  loading,
   children,
 }: ButtonProps): JSX.Element {
   const btnStyle = className(
@@ -40,7 +43,12 @@ function Button({
       className={btnStyle}
       onClick={onClick}
     >
-      {children}
+      <span className={styles.container}>
+        {children}
+        <span className={styles.loading}>
+          {loading && <Icon type="Spinner" />}
+        </span>
+      </span>
     </button>
   );
 }

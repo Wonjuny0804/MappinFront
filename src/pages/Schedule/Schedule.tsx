@@ -5,8 +5,10 @@ import "react-dates/lib/css/_datepicker.css";
 import "moment/locale/ko";
 import moment, { Moment } from "moment";
 import styles from "./Schedule.module.scss";
+import commonStyles from "../../styles/common.module.scss";
 import PageNav from "../../components/PageNav/PageNav";
 import { useHistory, Link } from "react-router-dom";
+import "../../styles/calander-override.scss";
 
 function Schedule() {
   const [startDate, setStartDate] = useState<Moment | null>(null);
@@ -31,21 +33,21 @@ function Schedule() {
     ? { maxWidth: "215px" }
     : { maxWidth: "144px" };
 
-  const handleOnGoBack = ():void => {
+  const handleOnGoBack = (): void => {
     history.push("/");
-  }
+  };
 
-  const handleOnNext = ():void => {
+  const handleOnNext = (): void => {
     history.push("/search");
-  }
+  };
 
   return (
-    <div className={styles.schedule}>
-      <header className={styles.header}>
-        <h1 className={styles.headerTitle}>여행 일정 만들기</h1>
-        <div className={styles.headerPhrase}>
+    <main className={styles.schedule}>
+      <header className={commonStyles.header}>
+        <h1 className={commonStyles.headerTitle}>여행 일정 만들기</h1>
+        <div className={commonStyles.headerPhrase}>
           <p>일정을 선택해 여행 계획을 세워보세요! :</p>
-          <Link to="/search">나중에 하기</Link> {/*링크로 교체*/}
+          <Link to="/search">나중에 하기</Link>
         </div>
       </header>
       <div className={styles.input}>
@@ -84,8 +86,8 @@ function Schedule() {
           initialVisibleMonth={() => moment()}
         />
       </section>
-      <PageNav prevOnClick={handleOnGoBack} nextOnClick={handleOnNext}/>
-    </div>
+      <PageNav prevOnClick={handleOnGoBack} nextOnClick={handleOnNext} />
+    </main>
   );
 }
 

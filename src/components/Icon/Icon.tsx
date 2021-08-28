@@ -10,6 +10,8 @@ import { ReactComponent as Share } from "./assets/Share.svg";
 import { ReactComponent as Kakao } from "./assets/Kakao.svg";
 import { ReactComponent as Facebook } from "./assets/Facebook.svg";
 import { ReactComponent as Naver } from "./assets/Naver.svg";
+import { ReactComponent as Spinner } from "./assets/Spinner.svg";
+import { ReactComponent as Marker } from "./assets/Marker.svg";
 
 export interface IconProps {
   type:
@@ -23,7 +25,9 @@ export interface IconProps {
     | "Share"
     | "Kakao"
     | "Naver"
-    | "Facebook";
+    | "Facebook"
+    | "Spinner"
+    | "Marker";
 }
 
 function Icon({ type }: IconProps): JSX.Element {
@@ -39,6 +43,8 @@ function Icon({ type }: IconProps): JSX.Element {
     Kakao: <Kakao />,
     Naver: <Naver />,
     Facebook: <Facebook />,
+    Spinner: <Spinner />,
+    Marker: <Marker />,
   };
 
   return dataObject[type];

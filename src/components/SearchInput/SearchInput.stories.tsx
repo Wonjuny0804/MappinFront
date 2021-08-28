@@ -1,12 +1,20 @@
 import React from "react";
 import { ComponentMeta } from "@storybook/react";
 import SearchInput from "./SearchInput";
+import Icon from "../Icon/Icon";
 
 export default {
-    title: "component/SearchInput",
-    component: SearchInput
-} as ComponentMeta<typeof SearchInput>
+  title: "component/Input",
+  component: SearchInput,
+} as ComponentMeta<typeof SearchInput>;
 
-export const SampleInput = ():JSX.Element => {
-    return <SearchInput />
-}
+export const SampleInput = (): JSX.Element => {
+  return (
+    <SearchInput
+      id="searchInput"
+      name="search"
+      type="search"
+      icon={<Icon type="Search" />}
+    />
+  );
+};
