@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  flex-flow: column wrap;
+  margin-top: 20px;
+  div,
+  button {
+    margin-top: 15px;
+  }
+  input {
+    font-size: 16px;
+    padding: 8px;
+    border: 3px solid #60d1a9;
+    height: 100%;
+    border-radius: 10px;
+    background-color: transparent;
+    font-family: "Spoqa Han Sans";
+    outline: none;
+    -webkit-appearance: none;
+    margin-top: 15px;
+  }
+}

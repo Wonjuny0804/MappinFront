@@ -1,30 +1,71 @@
-import React, { useRef } from 'react';
-import { Icon } from '..';
+import React, { useRef } from "react";
 import styles from "./SearchInput.module.scss";
 
-function SearchInput():JSX.Element {
+interface InputProps {
+  name: String;
+  id: String;
+  type: String;
+  icon: JSX.Element | false;
+  label?: String;
+  customStyle?: Object;
+  inputStyle?: Object;
+  labelStyle?: Object;
+  [x: string]: any;
+}
 
-    const wrapperRef = useRef<HTMLDivElement>(null);
-    const inputRef = useRef<HTMLInputElement>(null);
-    const labelRef = useRef<HTMLLabelElement>(null);
+function SearchInput({
+  id,
+  type,
+  icon,
+  label,
+  customStyle,
+  inputStyle,
+  labelStyle,
+  rest,
+}: InputProps): JSX.Element {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const labelRef = useRef<HTMLLabelElement>(null);
 
-    const handleWrapperClick = ():void => {
-        if(labelRef.current) labelRef.current.style.display = "none";
-        inputRef.current && inputRef.current.focus();
-    }
+  const handleWrapperClick = (): void => {
+    if (labelRef.current) labelRef.current.style.display = "none";
+    inputRef.current && inputRef.current.focus();
+  };
 
-    const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>): void => {
-        if (e.target.value === "" && labelRef.current) labelRef.current.style.display = "block";
-    }
+  const handleInputBlur = (e: React.FocusEvent<HTMLInputElement>): void => {
+    if (e.target.value === "" && labelRef.current)
+      labelRef.current.style.display = "block";
+  };
 
-
-    return (
-        <div className={styles.inputWrapper} ref={wrapperRef} onClick={handleWrapperClick}>
-            <Icon type="Search" />
-            <label htmlFor="SearchInput" className={styles.label} ref={labelRef}>가고 싶은 곳을 검색해 보세요</label>
-            <input type="search" id="SearchInput" name="search" minLength={2} className={styles.input} ref={inputRef} onBlur={handleInputBlur}/>
-        </div>
-    )
+  return (
+    <div
+      className={styles.inputWrapper}
+      ref={wrapperRef}
+      onClick={handleWrapperClick}
+      style={customStyle}
+    >
+      {icon && icon}
+      <label
+        htmlFor={`${id}`}
+        className={styles.label}
+        ref={labelRef}
+        style={labelStyle}
+      >
+        {label}
+      </label>
+      <input
+        {...rest}
+        autoComplete="off"
+        type={`${type}`}
+        id={`${id}`}
+        minLength={2}
+        className={styles.input}
+        style={inputStyle}
+        ref={inputRef}
+        onBlur={handleInputBlur}
+      />
+    </div>
+  );
 }
 
 export default SearchInput;
