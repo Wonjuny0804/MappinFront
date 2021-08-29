@@ -1,0 +1,15 @@
+.place {
+  .slider {
+    max-width: 996px;
+    margin: 0 auto;
+
+    .slide {
+      margin-right: 15px;
+      .image {
+        border-radius: 15px;
+        width: 282px;
+        height: 294px;
+      }
+    }
+  }
+}
