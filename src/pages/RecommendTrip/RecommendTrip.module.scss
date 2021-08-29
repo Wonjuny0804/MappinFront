@@ -1,0 +1,32 @@
+.recommendation {
+  position: relative;
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 0;
+  }
+  .slider {
+    .card {
+      margin: 30px 15px;
+    }
+  }
+  .sliderNav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    button {
+      &:disabled {
+        pointer-events: none;
+        svg {
+          path {
+            stroke: #d7d7d7;
+          }
+        }
+      }
+      padding: 0;
+      svg {
+        width: 42px;
+        height: 42px;
+      }
+    }
+  }
+}

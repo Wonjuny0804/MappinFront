@@ -12,6 +12,17 @@
   }
 }
 
+.loading {
+  display: inline-block;
+  svg {
+    width: 30px;
+    height: 30px;
+    circle {
+      stroke: #60d0a833;
+    }
+  }
+}
+
 .buttonAlign {
   button + button {
     margin-left: 20px;
