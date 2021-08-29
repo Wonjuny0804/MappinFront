@@ -37,6 +37,10 @@ function SearchInput({
       labelRef.current.style.display = "block";
   };
 
+  const handleKeyDown = ():void => {
+
+  }
+
   return (
     <div
       className={styles.inputWrapper}

@@ -25,6 +25,10 @@ function Search() {
     history.goBack();
   };
 
+  const handleOnEnter = (e) => {
+    console.log(e);
+  }
+
   useEffect(() => {}, []);
 
   return (
@@ -41,6 +45,7 @@ function Search() {
         type="search"
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
+        onKeyDown={handleOnEnter}
       />
       <section className={styles.recommendWord}>
         <h2>추천 검색어</h2>
