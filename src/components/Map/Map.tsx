@@ -18,7 +18,17 @@ function Map() {
     });
   }, [loaded]);
 
-  return <div id="map" style={{ width: "500px", height: "400px" }}></div>;
+  return (
+    <div
+      id="map"
+      style={{
+        width: "996px",
+        height: "360px",
+        margin: "0 auto",
+        borderRadius: "10px",
+      }}
+    ></div>
+  );
 }
 
 export default Map;

@@ -12,13 +12,21 @@
   }
 }
 
+.new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #60d1a912;
+  box-shadow: none;
+  border: none;
+}
 .image {
   height: 190px;
 }
 
 .information {
   background-color: #ffffff;
-  padding: 18px 23px;
+  padding: 13px 23px;
 
   h1 {
     margin: 0;

@@ -7,11 +7,14 @@ import Login from "../Content/Login";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { signInAction, signOutAction } from "../../redux/storage/auth";
 import { SubmitHandler } from "react-hook-form";
+import Icon from "../Icon/Icon";
 
 function NavBar() {
   const history = useHistory();
   const [isModalVisible, setModalVisibility] = useState(false);
-  const { user } = useSelector((state: RootStateOrAny) => state.auth);
+  const { user, loggingIn, loggedIn, loadingProfile } = useSelector(
+    (state: RootStateOrAny) => state.auth
+  );
   const dispatch = useDispatch();
 
   const openModal = () => {
@@ -42,13 +45,17 @@ function NavBar() {
         <div className={styles.inner}>
           <IconButton type="button" icon="Logo" onClick={handleIconClick} />
           <div className={styles.buttonAlign}>
-            {user ? (
+            {loggedIn ? (
               <Button
                 type="button"
                 secondary={true}
                 children="로그아웃"
                 onClick={() => dispatch(signOutAction())}
               />
+            ) : loggingIn || loadingProfile ? (
+              <span className={styles.loading}>
+                <Icon type="Spinner" />
+              </span>
             ) : (
               <>
                 <Button

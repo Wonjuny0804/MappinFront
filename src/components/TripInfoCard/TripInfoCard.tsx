@@ -1,35 +1,72 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 import styles from "./TripInfoCard.module.scss";
 import { DateToString } from "../../utils/date";
+import Skeleton from "react-loading-skeleton";
+import Icon from "../Icon/Icon";
+import classNames from "classnames";
 
 interface TripInfoCardProps {
-    imageURL: string;
-    title: string;
-    startDate: Date;
-    endDate: Date;
+  addNew?: boolean;
+  onClick?: () => void;
+  loading?: boolean;
+  imageURL?: string;
+  title?: string;
+  startDate?: Date;
+  endDate?: Date;
 }
 
-function TripInfoCard({ imageURL, title, startDate, endDate}: TripInfoCardProps): JSX.Element {
+function TripInfoCard({
+  addNew,
+  onClick,
+  loading,
+  imageURL,
+  title,
+  startDate,
+  endDate,
+}: TripInfoCardProps): JSX.Element {
+  const divImageSectionRef = useRef<HTMLDivElement>(null);
 
-    const divImageSectionRef = useRef<HTMLDivElement>(null);
-    
-    useEffect(() => {
-        if (divImageSectionRef.current) {
-            const $div = divImageSectionRef.current;
-            $div.style.backgroundImage = `url(${imageURL})`;
-            $div.style.backgroundPosition = "center";
-        }
-    }, []);
+  useEffect(() => {
+    if (divImageSectionRef.current) {
+      const $div = divImageSectionRef.current;
+      $div.style.backgroundImage = `url(${imageURL})`;
+      $div.style.backgroundPosition = "center";
+    }
+  }, []);
 
+  if (addNew) {
     return (
-        <article className={styles.cardWrapper}>
-            <div className={styles.image} ref={divImageSectionRef}></div>
-            <div className={styles.information}>
-                <h1>{title}</h1>
-                <p>{DateToString(startDate, endDate)}</p>
-            </div>
-        </article>
-    )
+      <button
+        className={classNames(styles.cardWrapper, styles.new)}
+        onClick={onClick}
+      >
+        <Icon type="Plus" />
+      </button>
+    );
+  }
+  return (
+    <article className={styles.cardWrapper}>
+      {loading ? (
+        <>
+          <Skeleton height={190} />
+          <div className={styles.information}>
+            <h1>
+              <Skeleton />
+            </h1>
+            <Skeleton />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={styles.image} ref={divImageSectionRef} />
+          <div className={styles.information}>
+            <h1>{title}</h1>
+            {startDate && endDate && <p>{DateToString(startDate, endDate)}</p>}
+          </div>
+        </>
+      )}
+    </article>
+  );
 }
 
-export default TripInfoCard
+export default TripInfoCard;
