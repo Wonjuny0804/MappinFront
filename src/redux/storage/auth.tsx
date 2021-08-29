@@ -1,9 +1,12 @@
 import axios from "axios";
+import { authHeader } from "../../utils/auth";
 import { clear, error, success } from "./alert";
 
 const LOGIN_REQUEST = "로그인 요청";
 const LOGIN_SUCCESS = "로그인 성공";
 const LOGIN_FAILURE = "로그인 실패";
+
+const PROFILE_REQUEST = "프로필 요청";
 const LOGOUT = "로그아웃";
 
 interface actionProps {
@@ -14,6 +17,7 @@ interface actionProps {
 const initialState = {
   loggedIn: false,
   loggingIn: false,
+  loadingProfile: false,
   user: null,
 };
 
@@ -27,22 +31,21 @@ export const signOutAction = () => (dispatch: any) => {
 };
 
 export const fetchProfile = () => {
-  const token = localStorage.getItem("token");
-
   return (dispatch: any) => {
-    if (token) {
-      const option = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      };
+    dispatch({ type: PROFILE_REQUEST });
+    const option = {
+      headers: {
+        Authorization: authHeader(),
+      },
+    };
+    if (authHeader()) {
       axios
         .get("/api/v1/users/me", option)
         .then(({ data }) => {
           if (data.result !== "SUCCESS") {
             dispatch(signOutAction());
-          }
-          dispatch({ type: LOGIN_SUCCESS, user: data.data });
+          } else if (data.result === "SUCCESS")
+            dispatch({ type: LOGIN_SUCCESS, user: data.data });
         })
         .catch((err) => {
           dispatch({
@@ -90,13 +93,17 @@ export function authReducer(state = initialState, action: actionProps) {
     case LOGIN_REQUEST:
       return {
         loggingIn: true,
-        user: action.user,
       };
     case LOGIN_SUCCESS:
       return {
         loggingIn: false,
         loggedIn: true,
+        loadingProfile: true,
         user: action.user,
+      };
+    case PROFILE_REQUEST:
+      return {
+        loadingProfile: true,
       };
     case LOGIN_FAILURE:
       return {};
