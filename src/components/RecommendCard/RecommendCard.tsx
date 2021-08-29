@@ -14,7 +14,7 @@ function RecommendCard({
 
   useEffect(() => {
     if (buttonRef.current) {
-      buttonRef.current.style.background = ` linear-gradient(0deg, rgba(52, 52, 52, 0.3), rgba(52, 52, 52, 0.3)), url(${backgroundURL})`;
+      buttonRef.current.style.background = `linear-gradient(0deg, rgba(52, 52, 52, 0.3), rgba(52, 52, 52, 0.3)), url(${backgroundURL})`;
       buttonRef.current.style.backgroundPosition = "center";
     }
   }, []);
