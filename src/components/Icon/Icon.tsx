@@ -12,6 +12,9 @@ import { ReactComponent as Facebook } from "./assets/Facebook.svg";
 import { ReactComponent as Naver } from "./assets/Naver.svg";
 import { ReactComponent as Spinner } from "./assets/Spinner.svg";
 import { ReactComponent as Marker } from "./assets/Marker.svg";
+import { ReactComponent as Plus } from "./assets/Plus.svg";
+import { ReactComponent as EmptyHeart } from "./assets/EmptyHeart.svg";
+import { ReactComponent as FillHeart } from "./assets/FillHeart.svg";
 
 export interface IconProps {
   type:
@@ -27,7 +30,10 @@ export interface IconProps {
     | "Naver"
     | "Facebook"
     | "Spinner"
-    | "Marker";
+    | "Marker"
+    | "Plus"
+    | "EmptyHeart"
+    | "FillHeart";
 }
 
 function Icon({ type }: IconProps): JSX.Element {
@@ -45,6 +51,9 @@ function Icon({ type }: IconProps): JSX.Element {
     Facebook: <Facebook />,
     Spinner: <Spinner />,
     Marker: <Marker />,
+    Plus: <Plus />,
+    EmptyHeart: <EmptyHeart />,
+    FillHeart: <FillHeart />,
   };
 
   return dataObject[type];

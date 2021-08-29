@@ -34,3 +34,21 @@
   padding: 16px 46px;
   margin-top: 44px;
 }
+
+.mytrip {
+  display: flex;
+  column-gap: 24px;
+}
+
+.loading {
+  display: inline-block;
+  width: 100%;
+  margin: 30px auto;
+  svg {
+    width: 80px;
+    height: 80px;
+    circle {
+      stroke: #60d0a833;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import { fetchProfile } from "../redux/storage/auth";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import Alert from "../components/Alert/Alert";
 import commonStyles from "../styles/common.module.scss";
+import RecommendTrip from "../pages/RecommendTrip/RecommendTrip";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/schedule" component={Schedule} />
         <Route exact path="/search" component={Search} />
+        <Route exact path="/recommended-trip" component={RecommendTrip} />
       </Switch>
 
       <footer className={styles.footer}></footer>
