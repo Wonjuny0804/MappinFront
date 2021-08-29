@@ -11,19 +11,21 @@ interface TripRecommendCardProps {
   index?: number;
   title?: string;
   style?: Object;
+  path?: any;
 }
 
 function TripRecommendCard({
   index,
   title,
   style,
+  path,
 }: TripRecommendCardProps): JSX.Element {
   return (
     <article className={styles.cardWrapper} style={style}>
       <header className={styles.header}>
         <div className={styles.title}>
           <div className={styles.order}>
-            <span className={styles.index}>1</span>
+            <span className={styles.index}>{index}</span>
             <Icon type="Ellipse" />
           </div>
           <h3>{title}</h3>
@@ -37,18 +39,16 @@ function TripRecommendCard({
           <Button type="button">선택</Button>
         </div>
       </header>
+
       <div className={styles.path}>
-        <div className={styles.place}>
-          <span className={styles.category}></span>
-          <p>제주 도립 미술관</p>
-        </div>
-        <div className={styles.place}>
-          <span className={styles.category}></span>
-          <p>향파두리 항몽유적지</p>
-        </div>
-        <div className={styles.place}>
-          <span className={styles.category}></span>
-        </div>
+        {path?.map((place: any) => {
+          return (
+            <div className={styles.place} key={place.name}>
+              <span className={styles.category}></span>
+              <p>{place.name}</p>
+            </div>
+          );
+        })}
       </div>
     </article>
   );

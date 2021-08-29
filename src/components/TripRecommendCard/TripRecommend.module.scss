@@ -43,11 +43,11 @@
   .path {
     position: relative;
     width: 100%;
-    height: 100%;
+    height: 70%;
     &:before {
       content: "";
       position: absolute;
-      left: 45px;
+      left: 80px;
       right: 120px;
       height: 5px;
       top: 70px;
@@ -55,6 +55,7 @@
     }
   }
   .place {
+    text-align: center;
     width: 120px;
     float: left;
     margin: 40px 0 0 40px;
@@ -64,7 +65,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-left: -25px;
+      text-align: center;
     }
     .category {
       display: inline-block;
