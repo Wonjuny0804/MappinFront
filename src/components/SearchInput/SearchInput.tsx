@@ -37,10 +37,6 @@ function SearchInput({
       labelRef.current.style.display = "block";
   };
 
-  const handleKeyDown = ():void => {
-
-  }
-
   return (
     <div
       className={styles.inputWrapper}
@@ -58,7 +54,6 @@ function SearchInput({
         {label}
       </label>
       <input
-        {...rest}
         autoComplete="off"
         type={`${type}`}
         id={`${id}`}
@@ -67,6 +62,7 @@ function SearchInput({
         style={inputStyle}
         ref={inputRef}
         onBlur={handleInputBlur}
+        {...rest}
       />
     </div>
   );

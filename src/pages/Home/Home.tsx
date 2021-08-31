@@ -65,11 +65,13 @@ function Home() {
               <TripInfoCard addNew onClick={handleOnClick} />
             </div>
           </>
-        ) : loggingIn || loadingProfile ? (
-          <span className={styles.loading}>
-            <Icon type="Spinner" />
-          </span>
-        ) : (
+        ) : 
+        // loggingIn || loadingProfile ? (
+        //   <span className={styles.loading}>
+        //     <Icon type="Spinner" />
+        //   </span>
+        // ) : 
+        (
           <div className={styles.trips}>
             <Icon type="NomadMap" />
             <p>여행 일정을 만들어보세요!</p>

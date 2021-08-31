@@ -3,14 +3,12 @@ import {
   SearchInput,
   RecommendCard,
   RecommendKeyword,
-  IconButton,
   PageNav,
   Icon,
 } from "../../components/";
 import styles from "./Search.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import { useHistory } from "react-router-dom";
-import Map from "../../components/Map/Map";
 
 function Search() {
   const [recommendWords, setRecommendWords] = useState<
@@ -25,11 +23,19 @@ function Search() {
     history.goBack();
   };
 
-  const handleOnEnter = (e) => {
-    console.log(e);
+  const handleOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const { value } = target;
+    
+    if (e.keyCode === 13 && value !== "") {
+      console.log(value);
+      target.value = "";
+    } 
   }
 
-  useEffect(() => {}, []);
+  const props = {
+    onKeyUp: handleOnEnter
+  }
 
   return (
     <main className={styles.pageLayout}>
@@ -45,7 +51,7 @@ function Search() {
         type="search"
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
-        onKeyDown={handleOnEnter}
+        rest={props}
       />
       <section className={styles.recommendWord}>
         <h2>추천 검색어</h2>
@@ -67,15 +73,8 @@ function Search() {
               />
             ))}
         </div>
-        {/* <Map /> */}
       </section>
       <PageNav prevOnClick={handleOnGoBack} />
-      {/* <IconButton
-        type="button"
-        onClick={handleOnGoBack}
-        icon="Prev"
-        className={styles.goBack}
-      /> */}
     </main>
   );
 }

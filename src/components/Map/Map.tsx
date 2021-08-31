@@ -4,9 +4,14 @@ declare const kakao: any;
 interface placeProps {
   y: number;
   x: number;
+  place_name: string;
 }
 
-function Map(searchKeyWord = "") {
+interface MapProps {
+  searchKeyWord?: string;
+}
+
+function Map({searchKeyWord}: MapProps) {
   const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
@@ -41,7 +46,7 @@ function Map(searchKeyWord = "") {
       }
 
       // 키워드 검색 완료 시 호출되는 콜백함수 입니다
-      function placesSearchCB (data: Array<placeProps>, status: string, pagination) {
+      function placesSearchCB (data: Array<placeProps>, status: string) {
         if (status === kakao.maps.services.Status.OK) {
 
             // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
@@ -81,17 +86,7 @@ function Map(searchKeyWord = "") {
 
   // }, [searchKeyWord])
 
-  return (
-    <div
-      id="map"
-      style={{
-        width: "996px",
-        height: "360px",
-        margin: "0 auto",
-        borderRadius: "10px",
-      }}
-    ></div>
-  );
+  return <div id="map" style={{ width: "500px", height: "400px" }}></div>;
 }
 
 export default Map;
