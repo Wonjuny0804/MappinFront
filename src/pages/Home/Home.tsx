@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import TripInfoCard from "../../components/TripInfoCard/TripInfoCard";
 import { fetchAllTrip } from "../../redux/storage/trip";
-import moment from "moment";
+import TripWishCard from "../../components/TripWishCard/TripWishCard";
 
 function Home() {
   const history = useHistory();
@@ -48,9 +48,8 @@ function Home() {
               {user.nickName}님의 여행 일정
             </h2>
             {/* TODO: trip 인터페이스로 교체 */}
-            <div className={styles.mytrip}>
+            <section className={styles.mytrip}>
               {isLoading && <TripInfoCard loading={isLoading} />}
-
               {trips?.map((trip: any, index: number) => {
                 return (
                   <TripInfoCard
@@ -63,7 +62,15 @@ function Home() {
                 );
               })}
               <TripInfoCard addNew onClick={handleOnClick} />
-            </div>
+            </section>
+
+            <section className={styles.wishTrip}>
+              <h2 className={styles.serviceTitle}>찜하신 일정</h2>
+              <TripWishCard
+                title="나를 위로하는 애월 여행"
+                imageURL="https://s3-alpha-sig.figma.com/img/104b/9b70/d314b24f0654ef100d9c33b0e73794f8?Expires=1630886400&Signature=F8Bs9kk~tlcTLr1mxz3NZKhQNnlVWBixj1l0cdbFnENZwnrDGfEA0n1Dc3kqHA~L3SPz5gL6GlFYc4dafltQCgTzU1f5BBMnFLBoC3XPG0q6B~~KgFjK6LJg6tHR5cUOSxAuw9XA2GLpHXo4vX-ewat-cuYeprDsWztRDZRDu8JorWWBYvRySuSIiCRCSCQ7eDCnpj4JgV~cll3JBdrZhoOJGZYIz0hJPi8JmGZxF-eIAvdMUOxg5OT012al4WMcZ599czAhxsHx3dAW6Rx1J74t91ofjVN19QxxmUclUlsFWYiYQHC0UVrHJt41Sc7CZmvsmJkG-DR9Ge6SnK8xsw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+              />
+            </section>
           </>
         ) : 
         // loggingIn || loadingProfile ? (

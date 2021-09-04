@@ -9,6 +9,7 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import Alert from "../components/Alert/Alert";
 import commonStyles from "../styles/common.module.scss";
 import RecommendTrip from "../pages/RecommendTrip/RecommendTrip";
+import Place from "../pages/Place/Place";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function App() {
         <Route exact path="/search" component={Search} />
         <Route exact path="/searchResult" component={SearchResult} />
         <Route exact path="/recommended-trip" component={RecommendTrip} />
+        <Route exact path="/place/:name" component={Place} />
       </Switch>
 
       <footer className={styles.footer}></footer>

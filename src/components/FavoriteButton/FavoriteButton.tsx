@@ -9,7 +9,7 @@ interface ButtonProps {
 function FavoriteButton({ isFavored, onClick }: ButtonProps): JSX.Element {
   return (
     <button className={styles.favorite} type="button" onClick={onClick}>
-      <Icon type="EmptyHeart" />
+      {isFavored ? <Icon type="FillHeart" /> : <Icon type="EmptyHeart" />}
     </button>
   );
 }
