@@ -6,6 +6,7 @@ interface InputProps {
   id: String;
   type: String;
   icon: JSX.Element | false;
+  
   label?: String;
   customStyle?: Object;
   inputStyle?: Object;

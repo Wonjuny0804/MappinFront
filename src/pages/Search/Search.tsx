@@ -28,7 +28,7 @@ function Search() {
     const { value } = target;
     
     if (e.keyCode === 13 && value !== "") {
-      console.log(value);
+      history.push("/searchResult")
       target.value = "";
     } 
   }

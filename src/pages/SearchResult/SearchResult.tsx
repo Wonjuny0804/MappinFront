@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./Search.module.scss";
+import styles from "./SearchResult.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import { SearchInput, PageNav, Icon } from "../../components";
 import { useHistory } from "react-router-dom";
