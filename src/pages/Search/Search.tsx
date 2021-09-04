@@ -3,14 +3,12 @@ import {
   SearchInput,
   RecommendCard,
   RecommendKeyword,
-  IconButton,
   PageNav,
   Icon,
 } from "../../components/";
 import styles from "./Search.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import { useHistory } from "react-router-dom";
-import Map from "../../components/Map/Map";
 
 function Search() {
   const [recommendWords, setRecommendWords] = useState<
@@ -25,11 +23,27 @@ function Search() {
     history.goBack();
   };
 
-  useEffect(() => {}, []);
+  const handleOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    const { value } = target;
+    
+    if (e.keyCode === 13 && value !== "") {
+      history.push("/searchResult")
+      target.value = "";
+    } 
+  }
+
+  const props = {
+    onKeyUp: handleOnEnter
+  }
+
+  // useEffect(() => {
+  //   getRecommendations()
+  // }, [])
 
   return (
     <main className={styles.pageLayout}>
-      <div className={commonStyles.header}>
+      <div className={styles.header}>
         <h1 className={commonStyles.headerTitle}>관광지 검색</h1>
         <div className={commonStyles.headerPhrase}>
           <p>꼭 가고 싶은 장소 검색을 통해 일정을 추천받아보세요.</p>
@@ -41,8 +55,9 @@ function Search() {
         type="search"
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
+        rest={props}
       />
-      <section className={styles.recommendWord}>
+      {/* <section className={styles.recommendWord}>
         <h2>추천 검색어</h2>
         <div>
           {recommendWords &&
@@ -50,8 +65,8 @@ function Search() {
               <RecommendCard cardTitle={word.name} backgroundURL={word.url} />
             ))}
         </div>
-      </section>
-      <section className={styles.recommendKeyword}>
+      </section> */}
+      {/* <section className={styles.recommendKeyword}>
         <h2>추천 키워드</h2>
         <div>
           {keywords &&
@@ -62,15 +77,8 @@ function Search() {
               />
             ))}
         </div>
-        {/* <Map /> */}
-      </section>
+      </section> */}
       <PageNav prevOnClick={handleOnGoBack} />
-      {/* <IconButton
-        type="button"
-        onClick={handleOnGoBack}
-        icon="Prev"
-        className={styles.goBack}
-      /> */}
     </main>
   );
 }

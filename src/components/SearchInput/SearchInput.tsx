@@ -6,6 +6,7 @@ interface InputProps {
   id: String;
   type: String;
   icon: JSX.Element | false;
+  
   label?: String;
   customStyle?: Object;
   inputStyle?: Object;
@@ -54,7 +55,6 @@ function SearchInput({
         {label}
       </label>
       <input
-        {...rest}
         autoComplete="off"
         type={`${type}`}
         id={`${id}`}
@@ -63,6 +63,7 @@ function SearchInput({
         style={inputStyle}
         ref={inputRef}
         onBlur={handleInputBlur}
+        {...rest}
       />
     </div>
   );

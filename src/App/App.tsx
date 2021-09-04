@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import styles from "./App.module.scss";
-import { Home, Schedule } from "../pages";
+import { Home, Schedule, SearchResult } from "../pages";
 import { NavBar } from "../components/";
 import Search from "../pages/Search/Search";
 import { fetchProfile } from "../redux/storage/auth";
@@ -29,6 +29,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/schedule" component={Schedule} />
         <Route exact path="/search" component={Search} />
+        <Route exact path="/searchResult" component={SearchResult} />
         <Route exact path="/recommended-trip" component={RecommendTrip} />
         <Route exact path="/place/:name" component={Place} />
       </Switch>
