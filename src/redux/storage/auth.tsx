@@ -32,13 +32,13 @@ export const signOutAction = () => (dispatch: any) => {
 
 export const fetchProfile = () => {
   return (dispatch: any) => {
-    dispatch({ type: PROFILE_REQUEST });
     const option = {
       headers: {
         Authorization: authHeader(),
       },
     };
     if (authHeader()) {
+      dispatch({ type: PROFILE_REQUEST });
       axios
         .get("/api/v1/users/me", option)
         .then(({ data }) => {
@@ -62,13 +62,12 @@ export const fetchProfile = () => {
 
 export const signInAction = (email: string, password: string) => {
   return (dispatch: any) => {
-    dispatch({ type: LOGIN_REQUEST });
     const option = {
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
       },
     };
-
+    dispatch({ type: LOGIN_REQUEST });
     axios
       .post(`/api/v1/auth/login`, JSON.stringify({ email, password }), option)
       .then(({ data }) => {
@@ -80,6 +79,7 @@ export const signInAction = (email: string, password: string) => {
         }, 3000);
       })
       .catch((err) => {
+        dispatch({ type: LOGIN_FAILURE });
         dispatch(error("유저 정보를 찾을수 없습니다"));
         setTimeout(() => {
           dispatch(clear());
@@ -98,7 +98,7 @@ export function authReducer(state = initialState, action: actionProps) {
       return {
         loggingIn: false,
         loggedIn: true,
-        loadingProfile: true,
+        loadingProfile: false,
         user: action.user,
       };
     case PROFILE_REQUEST:
@@ -106,9 +106,9 @@ export function authReducer(state = initialState, action: actionProps) {
         loadingProfile: true,
       };
     case LOGIN_FAILURE:
-      return {};
+      return initialState;
     case LOGOUT:
-      return {};
+      return initialState;
     default:
       return state;
   }
