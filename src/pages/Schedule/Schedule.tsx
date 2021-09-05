@@ -23,6 +23,7 @@ function Schedule() {
   }) => {
     setStartDate(args.startDate);
     setEndDate(args.endDate);
+    console.log(startDate, endDate);
   };
 
   const startDateFormatted = startDate

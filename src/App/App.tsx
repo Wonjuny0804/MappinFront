@@ -33,7 +33,6 @@ function App() {
         <Route exact path="/recommended-trip" component={RecommendTrip} />
         <Route exact path="/place/:name" component={Place} />
       </Switch>
-
       <footer className={styles.footer}></footer>
     </div>
   );
