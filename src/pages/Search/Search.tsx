@@ -14,12 +14,10 @@ import { searchPlaceAction } from "../../redux/storage/search";
 import { useSelector, useDispatch } from "react-redux";
 
 function Search() {
-  const [recommendWords, setRecommendWords] = useState<
-    Array<{ name: string; url: string }>
-  >([]);
+  // const [recommendWords, setRecommendWords] = useState<
+  //   Array<{ name: string; url: string }>
+  // >([]);
 
-  const [keywords, setKeywords] = useState<Array<Array<string>>>([]);
-  const search = useSelector((state: RootState) => state.search);
   const dispatch = useDispatch();
 
   const history = useHistory();
