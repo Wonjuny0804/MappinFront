@@ -24,3 +24,6 @@ interface ProviderProps {
 export const StoreProvider = ({ children }: ProviderProps) => {
   return <Provider store={store}>{children}</Provider>;
 };
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

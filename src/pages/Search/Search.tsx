@@ -9,6 +9,9 @@ import {
 import styles from "./Search.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import { useHistory } from "react-router-dom";
+import { RootState } from "../../redux/store"
+import { searchPlaceAction } from "../../redux/storage/search";
+import { useSelector, useDispatch } from "react-redux";
 
 function Search() {
   const [recommendWords, setRecommendWords] = useState<
@@ -16,6 +19,8 @@ function Search() {
   >([]);
 
   const [keywords, setKeywords] = useState<Array<Array<string>>>([]);
+  const search = useSelector((state: RootState) => state.search);
+  const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -28,18 +33,16 @@ function Search() {
     const { value } = target;
     
     if (e.keyCode === 13 && value !== "") {
-      history.push("/searchResult")
+      dispatch(searchPlaceAction(value));
       target.value = "";
-    } 
+      history.push("/searchResult");
+    }
   }
 
   const props = {
     onKeyUp: handleOnEnter
   }
 
-  // useEffect(() => {
-  //   getRecommendations()
-  // }, [])
 
   return (
     <main className={styles.pageLayout}>

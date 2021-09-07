@@ -10,15 +10,15 @@ const initialState = {
   searchKeyWord: "",
 };
 
-export const searchPlaceAction = () => (dispatch: any) => {
-  dispatch({ type: SEARCH_PLACE });
-  return 0;
+export const searchPlaceAction = (keyWord: string) => {
+  return { type: SEARCH_PLACE, keyWord: keyWord }
 }
 
 export function searchReducer(state = initialState, action: actionProps) {
   switch (action.type) {
     case SEARCH_PLACE:
       return {
+        ...state,
         searchKeyWord: action.keyWord
       };
     default:
