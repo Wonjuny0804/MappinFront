@@ -8,7 +8,11 @@ import styles from "./Schedule.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import PageNav from "../../components/PageNav/PageNav";
 import { useHistory, Link } from "react-router-dom";
-import "../../styles/calander-override.scss";
+// import "../../styles/calander-override.scss";
+import "styles/calander-override.scss";
+import { setDateAction } from "redux/storage/date";
+import { useDispatch } from "react-redux";
+
 
 function Schedule() {
   const [startDate, setStartDate] = useState<Moment | null>(null);
@@ -17,13 +21,14 @@ function Schedule() {
 
   const history = useHistory();
 
+  const dispatch = useDispatch();
+
   const handleOnDateChange = (args: {
     startDate: Moment | null;
     endDate: Moment | null;
   }) => {
     setStartDate(args.startDate);
     setEndDate(args.endDate);
-    console.log(startDate, endDate);
   };
 
   const startDateFormatted = startDate
@@ -40,6 +45,10 @@ function Schedule() {
 
   const handleOnNext = (): void => {
     history.push("/search");
+
+    if (startDate && endDate) {
+      dispatch(setDateAction(startDate, endDate));
+    }
   };
 
   return (

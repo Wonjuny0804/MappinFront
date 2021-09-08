@@ -1,15 +1,25 @@
+import { Moment } from "moment";
 const SET_DATE = "여행 기간 설정";
 
 interface actionProps {
   type: string;
-  startDate: string;
-  endDate: string;
+  startDate: Moment;
+  endDate: Moment;
 }
 
 const initialState = {
   startDate: "",
   endDate: ""
 }
+
+export const setDateAction = (startDate: Moment, endDate: Moment) => {
+  return {
+    type: SET_DATE,
+    startDate,
+    endDate
+  }
+}
+
 
 export function dateReducer(state = initialState, action: actionProps) {
   switch (action.type) {
