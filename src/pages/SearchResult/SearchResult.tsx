@@ -20,9 +20,7 @@ function SearchResult() {
     <main className={styles.pageLayout}>
       <div className={commonStyles.header}>
         <h1 className={commonStyles.headerTitle}>관광지 검색</h1>
-        <div className={commonStyles.headerPhrase}>
-          <p>꼭 가고 싶은 장소 검색을 통해 일정을 추천받아보세요.</p>
-        </div>
+        <p className={styles.headerPhrase}>검색한 관광지가 이곳이 맞나요? 맞다면 +버튼을 클릭해 주세요.</p>
       </div>
       <SearchInput
         id="searchInput"
