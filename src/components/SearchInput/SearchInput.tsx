@@ -1,16 +1,18 @@
 import React, { useRef } from "react";
 import styles from "./SearchInput.module.scss";
+import classNames from "classnames";
 
 interface InputProps {
   name: String;
   id: String;
   type: String;
   icon: JSX.Element | false;
-  
+  secondary: boolean; 
   label?: String;
   customStyle?: Object;
   inputStyle?: Object;
   labelStyle?: Object;
+  value?: string;
   [x: string]: any;
 }
 
@@ -18,10 +20,12 @@ function SearchInput({
   id,
   type,
   icon,
+  secondary,
   label,
   customStyle,
   inputStyle,
   labelStyle,
+  value,
   rest,
 }: InputProps): JSX.Element {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -40,29 +44,30 @@ function SearchInput({
 
   return (
     <div
-      className={styles.inputWrapper}
+      className={secondary ? classNames(styles.inputWrapper, styles.result) : styles.inputWrapper}
       ref={wrapperRef}
       onClick={handleWrapperClick}
       style={customStyle}
     >
       {icon && icon}
-      <label
+      {!value && <label
         htmlFor={`${id}`}
         className={styles.label}
         ref={labelRef}
         style={labelStyle}
       >
         {label}
-      </label>
+      </label>}
       <input
         autoComplete="off"
         type={`${type}`}
         id={`${id}`}
         minLength={2}
-        className={styles.input}
+        className={secondary ? classNames(styles.resultInput, styles.input) : styles.input}
         style={inputStyle}
         ref={inputRef}
         onBlur={handleInputBlur}
+        defaultValue={value}
         {...rest}
       />
     </div>

@@ -54,6 +54,7 @@ function Search() {
         id="searchInput"
         name="search"
         type="search"
+        secondary={false}
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
         rest={props}

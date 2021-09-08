@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import classNames from "classnames";
+import styles from "./Map.module.scss";
 declare const kakao: any;
 
 interface placeProps {
@@ -9,9 +11,12 @@ interface placeProps {
 
 interface MapProps {
   searchKeyWord?: string;
+  width?: string;
+  height?: string;
+  className?: string;
 }
 
-function Map({searchKeyWord}: MapProps) {
+function Map({ searchKeyWord, width, height, className }: MapProps) {
   const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
@@ -63,14 +68,14 @@ function Map({searchKeyWord}: MapProps) {
         } 
     }
 
-      if (searchKeyWord) {
-        // 장소 검색 객체를 생성합니다
-        var ps = new kakao.maps.services.Places(); 
+      // if (searchKeyWord) {
+      //   // 장소 검색 객체를 생성합니다
+      //   var ps = new kakao.maps.services.Places(); 
 
-        // 키워드로 장소를 검색합니다
-        ps.keywordSearch('이태원 맛집', placesSearchCB); 
+      //   // 키워드로 장소를 검색합니다
+      //   ps.keywordSearch('이태원 맛집', placesSearchCB); 
 
-      }
+      // }
     });
   }, [loaded, searchKeyWord]);
 
@@ -86,7 +91,11 @@ function Map({searchKeyWord}: MapProps) {
 
   // }, [searchKeyWord])
 
-  return <div id="map" style={{ width: "500px", height: "400px" }}></div>;
+  return <div 
+          id="map" 
+          style={{ width: width, height: height }} 
+          className={className ? classNames(styles.mapDefault, className) : styles.mapDefault}>
+          </div>;
 }
 
 export default Map;

@@ -14,6 +14,7 @@ export const SampleInput = (): JSX.Element => {
       id="searchInput"
       name="search"
       type="search"
+      secondary={false}
       icon={<Icon type="Search" />}
     />
   );
