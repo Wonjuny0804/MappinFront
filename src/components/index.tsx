@@ -7,3 +7,4 @@ export { default as PageNav } from "./PageNav/PageNav";
 export { default as RecommendKeyword } from "./RecommendKeyword/RecommendKeyword";
 export { default as RecommendCard } from "./RecommendCard/RecommendCard";
 export { default as Map } from "./Map/Map";
+export { default as CustomOverlay } from "./CustomOverlay/CustomOverlay"; 

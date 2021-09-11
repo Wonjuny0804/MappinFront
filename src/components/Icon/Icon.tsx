@@ -15,6 +15,7 @@ import { ReactComponent as Marker } from "./assets/Marker.svg";
 import { ReactComponent as Plus } from "./assets/Plus.svg";
 import { ReactComponent as EmptyHeart } from "./assets/EmptyHeart.svg";
 import { ReactComponent as FillHeart } from "./assets/FillHeart.svg";
+import { ReactComponent as AddPlace } from "./assets/mappinAdd.svg";
 
 export interface IconProps {
   type:
@@ -33,7 +34,8 @@ export interface IconProps {
     | "Marker"
     | "Plus"
     | "EmptyHeart"
-    | "FillHeart";
+    | "FillHeart"
+    | "AddPlace";
 }
 
 function Icon({ type }: IconProps): JSX.Element {
@@ -54,6 +56,7 @@ function Icon({ type }: IconProps): JSX.Element {
     Plus: <Plus />,
     EmptyHeart: <EmptyHeart />,
     FillHeart: <FillHeart />,
+    AddPlace: <AddPlace />
   };
 
   return dataObject[type];

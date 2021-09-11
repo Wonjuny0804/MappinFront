@@ -9,8 +9,7 @@ import { RootState } from 'redux/store';
 function SearchResult() {
 
   const history = useHistory();
-  const keyWord = useSelector((state: RootState) => state.search);
-  console.log(keyWord);
+  const keyWord = useSelector((state: RootState) => state.search.searchKeyWord);
 
   const handleOnGoBack = (): void => {
     history.goBack();
@@ -29,10 +28,10 @@ function SearchResult() {
         secondary={true}
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
-        value={keyWord.searchKeyWord}
+        value={keyWord}
       />
 
-      <Map searchKeyWord={keyWord.searchKeyWord} width="1200px" height="434px" className={styles.mapStyle}/>
+      <Map searchKeyWord={keyWord} width="1200px" height="434px" className={styles.mapStyle}/>
     
       <PageNav prevOnClick={handleOnGoBack} />
     </main>
