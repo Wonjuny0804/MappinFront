@@ -14,7 +14,7 @@ function CustomOverlay ({
   onClick
 }: CustomOverlayProps): JSX.Element {
   return (
-  <div className={styles.overlayWrapper}>
+  <div className={styles.overlayWrapper} id="customOverlay">
     <h2 className={styles.overlayTitle}>{name}</h2>
     <div className={styles.keywords}>
       {keywords ? keywords.map((keyword, index) => <span key={index}>{keyword}</span>
