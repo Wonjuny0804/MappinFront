@@ -13,6 +13,7 @@ interface InputProps {
   inputStyle?: Object;
   labelStyle?: Object;
   value?: string;
+  disabled?: boolean;
   [x: string]: any;
 }
 
@@ -26,6 +27,7 @@ function SearchInput({
   inputStyle,
   labelStyle,
   value,
+  disabled,
   rest,
 }: InputProps): JSX.Element {
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -68,6 +70,7 @@ function SearchInput({
         ref={inputRef}
         onBlur={handleInputBlur}
         defaultValue={value}
+        disabled={disabled}
         {...rest}
       />
     </div>

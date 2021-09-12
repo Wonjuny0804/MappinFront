@@ -3,6 +3,7 @@ import classNames from "classnames";
 import styles from "./Map.module.scss";
 import customMarker from "./assets/mappinCustomMarker.png";
 import { CustomOverlay } from "components";
+import ReactDOMServer from 'react-dom/server';
 
 declare const kakao: any;
 interface placeProps {
@@ -30,16 +31,6 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
         };
   
         const map = new kakao.maps.Map(container, options);
-        const infowindow = new kakao.maps.InfoWindow({zIndex:1});
-        // const customOverlay = new kakao.maps.CustomOverlay({
-        //   map: map,
-        //   clickable: true,
-        //   content: <CustomOverlay />,
-        //   position: new kakao.maps.LatLng(33.450701, 126.570667),
-        //   xAnchor: 0.5,
-        //   yAnchor: 1,
-        //   zIndex: 3
-        // });
         
         const displayMarker = (place: placeProps) => {
 
@@ -57,12 +48,23 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
           const marker = new kakao.maps.Marker({
               map: map,
               position: new kakao.maps.LatLng(place.y, place.x),
-              image: icon
+              image: icon,
+              clickable: true
           });
   
           kakao.maps.event.addListener(marker, 'click', function() {
-              infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
-              infowindow.open(map, marker);
+          })
+        }
+
+        const displayOverlay = (place: placeProps) => {
+          const customOverlay = ReactDOMServer.renderToString(<CustomOverlay name={place.place_name} />);
+
+          const overlay = new kakao.maps.CustomOverlay({
+            map,
+            clickable: true,
+            content: customOverlay,
+            position: new kakao.maps.LatLng(place.y, place.x),
+            zIndex: 9
           })
         }
 
@@ -72,7 +74,8 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
               const bounds = new kakao.maps.LatLngBounds();
   
               for (let i = 0; i < data.length; i++) {
-                  displayMarker(data[i]);    
+                  displayMarker(data[i]);
+                  displayOverlay(data[i]); 
                   bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
               }       
   
