@@ -8,11 +8,10 @@ import styles from "./Schedule.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import PageNav from "../../components/PageNav/PageNav";
 import { useHistory, Link } from "react-router-dom";
-// import "../../styles/calander-override.scss";
-import "styles/calander-override.scss";
-import { setDateAction } from "redux/storage/date";
+import "../../styles/calander-override.scss";
+// import "styles/calander-override.scss";
+import { setDateAction } from "../../redux/storage/date";
 import { useDispatch } from "react-redux";
-
 
 function Schedule() {
   const [startDate, setStartDate] = useState<Moment | null>(null);
@@ -56,7 +55,7 @@ function Schedule() {
       <header className={commonStyles.header}>
         <h1 className={commonStyles.headerTitle}>여행 일정 만들기</h1>
         <div className={commonStyles.headerPhrase}>
-          <p>일정을 선택해 여행 계획을 세워보세요! :</p>
+          <p>일정을 선택해 여행 계획을 세워보세요! :)</p>
           <Link to="/search">나중에 하기</Link>
         </div>
       </header>
