@@ -9,8 +9,9 @@ import {
 import styles from "./Search.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import { useHistory } from "react-router-dom";
-import { RootState } from "../../redux/store"
+import { RootState } from "../../redux/store";
 import { searchPlaceAction } from "../../redux/storage/search";
+import Map from "components/Map/Map";
 import { useSelector, useDispatch } from "react-redux";
 
 function Search() {
@@ -19,6 +20,7 @@ function Search() {
   // >([]);
 
   const dispatch = useDispatch();
+  const keyWord = useSelector((state: RootState) => state.search.searchKeyWord);
 
   const history = useHistory();
 
@@ -29,18 +31,16 @@ function Search() {
   const handleOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     const { value } = target;
-    
+
     if (e.keyCode === 13 && value !== "") {
       dispatch(searchPlaceAction(value));
       target.value = "";
-      history.push("/searchResult");
     }
-  }
+  };
 
   const props = {
-    onKeyUp: handleOnEnter
-  }
-
+    onKeyUp: handleOnEnter,
+  };
 
   return (
     <main className={styles.pageLayout}>
@@ -59,6 +59,7 @@ function Search() {
         icon={<Icon type="Search" />}
         rest={props}
       />
+
       {/* <section className={styles.recommendWord}>
         <h2>추천 검색어</h2>
         <div>
@@ -80,6 +81,14 @@ function Search() {
             ))}
         </div>
       </section> */}
+      {keyWord && (
+        <Map
+          searchKeyWord={keyWord}
+          width="1200px"
+          height="434px"
+          className={styles.mapStyle}
+        />
+      )}
       <PageNav prevOnClick={handleOnGoBack} />
     </main>
   );
