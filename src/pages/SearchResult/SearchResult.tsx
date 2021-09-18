@@ -31,6 +31,7 @@ function SearchResult() {
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
         value={keyWord}
+        disabled={true}
       />
 
       <Map
