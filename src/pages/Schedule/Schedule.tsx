@@ -11,11 +11,16 @@ import { useHistory, Link } from "react-router-dom";
 import "../../styles/calander-override.scss";
 // import "styles/calander-override.scss";
 import { setDateAction } from "../../redux/storage/date";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "redux/store";
 
 function Schedule() {
-  const [startDate, setStartDate] = useState<Moment | null>(null);
-  const [endDate, setEndDate] = useState<Moment | null>(null);
+  const { startDate: startD, endDate: endD } = useSelector(
+    (state: RootState) => state.date
+  );
+
+  const [startDate, setStartDate] = useState<Moment | null>(startD || null);
+  const [endDate, setEndDate] = useState<Moment | null>(endD || null);
   const [focus, setFocus] = useState<FocusedInputShape | null>("startDate");
 
   const history = useHistory();

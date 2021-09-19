@@ -32,8 +32,10 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
       const map = new kakao.maps.Map(container, options);
 
       const displayMarker = (place: placeProps) => {
-        const customOverlay = ReactDOMServer.renderToString(
-          <CustomOverlay name={place.place_name} />
+        const customOverlay = CustomOverlay(
+          place.place_name,
+          handleSelect,
+          closeOverlay
         );
 
         const overlay = new kakao.maps.CustomOverlay({
@@ -68,6 +70,14 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
 
           overlay.setMap(map);
         });
+
+        function handleSelect() {
+          console.log(place);
+        }
+
+        function closeOverlay() {
+          overlay.setMap(null);
+        }
       };
 
       // const displayOverlay = (place: placeProps) => {

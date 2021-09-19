@@ -8,18 +8,17 @@ interface actionProps {
 }
 
 const initialState = {
-  startDate: "",
-  endDate: ""
-}
+  startDate: null,
+  endDate: null,
+};
 
 export const setDateAction = (startDate: Moment, endDate: Moment) => {
   return {
     type: SET_DATE,
     startDate,
-    endDate
-  }
-}
-
+    endDate,
+  };
+};
 
 export function dateReducer(state = initialState, action: actionProps) {
   switch (action.type) {
@@ -27,9 +26,9 @@ export function dateReducer(state = initialState, action: actionProps) {
       return {
         ...state,
         startDate: action.startDate,
-        endDate: action.endDate
+        endDate: action.endDate,
       };
     default:
-      return state
+      return state;
   }
 }
