@@ -14,23 +14,26 @@ function CustomOverlay(
   name: string,
   handleSelect: () => void,
   closeOverlay: () => void,
-  keywords?: []
+  keywords?: string[]
 ): HTMLElement {
   const $content = document.createElement("div");
   const $title = document.createElement("h2");
   const $keywords = document.createElement("div");
   const $button = document.createElement("button");
-
   $content.classList.add("overlayWrapper");
   $title.classList.add("overlayTitle");
   $keywords.classList.add("keywords");
   $button.classList.add("addButton");
 
   $title.innerHTML = name;
-  $keywords.innerHTML = keywords
-    ? "" +
-      keywords.map((keyword, index) => `<span key=${index}>${keyword}</span>`)
-    : "<span>아직 키워드가 없습니다.</span>";
+  $keywords.innerHTML =
+    keywords && keywords[0] !== ""
+      ? "" +
+        keywords.map(
+          (keyword, index) =>
+            `<span class='keyword' key=${index}>${keyword}</span>`
+        )
+      : "<span>아직 키워드가 없습니다.</span>";
 
   $content.onclick = function () {
     closeOverlay();

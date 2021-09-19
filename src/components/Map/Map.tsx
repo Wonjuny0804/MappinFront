@@ -3,13 +3,15 @@ import classNames from "classnames";
 import styles from "./Map.module.scss";
 import customMarker from "./assets/mappinCustomMarker.png";
 import { CustomOverlay } from "components";
-import ReactDOMServer from "react-dom/server";
+import { setPlaceAction } from "redux/storage/place";
+import { useDispatch } from "react-redux";
 
 declare const kakao: any;
 interface placeProps {
   y: number;
   x: number;
   place_name: string;
+  category_group_name: string;
 }
 
 interface MapProps {
@@ -20,6 +22,7 @@ interface MapProps {
 }
 
 function Map({ searchKeyWord, width, height, className }: MapProps) {
+  const dispatch = useDispatch();
   useEffect(() => {
     kakao.maps.load(() => {
       const container = document.getElementById("map");
@@ -32,10 +35,12 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
       const map = new kakao.maps.Map(container, options);
 
       const displayMarker = (place: placeProps) => {
+        const keywords = [place.category_group_name];
         const customOverlay = CustomOverlay(
           place.place_name,
           handleSelect,
-          closeOverlay
+          closeOverlay,
+          keywords
         );
 
         const overlay = new kakao.maps.CustomOverlay({
@@ -63,6 +68,8 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
           clickable: true,
         });
 
+        overlay.setMap(map);
+
         kakao.maps.event.addListener(marker, "click", function () {
           const $overlay = document.querySelector("#customOverlay");
           if ($overlay?.parentElement)
@@ -72,7 +79,14 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
         });
 
         function handleSelect() {
-          console.log(place);
+          dispatch(
+            setPlaceAction({
+              name: place.place_name,
+              lat: place.y,
+              lng: place.x,
+              keywords: [place.category_group_name],
+            })
+          );
         }
 
         function closeOverlay() {

@@ -12,15 +12,17 @@ import { useHistory } from "react-router-dom";
 import { RootState } from "../../redux/store";
 import { searchPlaceAction } from "../../redux/storage/search";
 import Map from "components/Map/Map";
+
 import { useSelector, useDispatch } from "react-redux";
+import { setPlaceAction } from "redux/storage/place";
 
 function Search() {
   // const [recommendWords, setRecommendWords] = useState<
   //   Array<{ name: string; url: string }>
   // >([]);
-
   const dispatch = useDispatch();
   const keyWord = useSelector((state: RootState) => state.search.searchKeyWord);
+  const { selectedPlace }: any = useSelector((state: RootState) => state.place);
 
   const history = useHistory();
 
@@ -33,8 +35,8 @@ function Search() {
     const { value } = target;
 
     if (e.keyCode === 13 && value !== "") {
+      dispatch(setPlaceAction(null));
       dispatch(searchPlaceAction(value));
-      target.value = "";
     }
   };
 
@@ -61,6 +63,7 @@ function Search() {
         secondary={false}
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
+        value={selectedPlace?.name}
         rest={props}
       />
 
@@ -87,7 +90,7 @@ function Search() {
       </section> */}
       {keyWord && (
         <Map
-          searchKeyWord={keyWord}
+          searchKeyWord={selectedPlace?.name || keyWord}
           width="1200px"
           height="434px"
           className={styles.mapStyle}
