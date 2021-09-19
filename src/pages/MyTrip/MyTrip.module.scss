@@ -9,6 +9,7 @@
   .slider {
     .card {
       margin: 30px 15px;
+      min-width: 894px;
     }
   }
   .sliderNav {
@@ -31,11 +32,4 @@
       }
     }
   }
-}
-
-.makeNew {
-  padding: 16px 46px;
-  margin-top: 44px;
-  font-weight: 700;
-  font-size: 22px;
 }

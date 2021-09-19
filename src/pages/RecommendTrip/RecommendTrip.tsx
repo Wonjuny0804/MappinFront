@@ -8,20 +8,28 @@ import Slider from "react-slick";
 import TripRecommendCard from "../../components/TripRecommendCard/TripRecommendCard";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { fetchRecommendedTrip } from "../../redux/storage/trip";
+import { RootState } from "redux/store";
+import RecommendedMap from "components/Map/RecommendedMap";
+import { setMyTripAction } from "redux/storage/mytrip";
 
 function RecommendTrip() {
   const history = useHistory();
   const slider = useRef<Slider | null>(null);
+
+  const { selectedPlace }: any = useSelector((state: RootState) => state.place);
+  const { paths }: any = useSelector((state: RootStateOrAny) => state.trip);
+
   const handleOnGoBack = (): void => {
     history.push("/search");
   };
   const dispatch = useDispatch();
-  const { paths } = useSelector((state: RootStateOrAny) => state.trip);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   useEffect(() => {
-    dispatch(fetchRecommendedTrip(789.789, 321.321));
-  }, []);
+    if (selectedPlace) {
+      dispatch(fetchRecommendedTrip(789.789, 321.321));
+    }
+  }, [dispatch, selectedPlace]);
 
   const settings = {
     dots: false,
@@ -32,6 +40,24 @@ function RecommendTrip() {
     afterChange: (current: any) => setCurrentSlide(current),
   };
 
+  const handleCreateNewTrip = () => {
+    history.push("/my-trip");
+    dispatch(
+      setMyTripAction({
+        title: "first trip",
+        startDate: "2021-08-10",
+        endDate: "2021-08-12",
+        memo: "test",
+        paths: [
+          {
+            id: 1,
+            places: [selectedPlace],
+          },
+        ],
+      })
+    );
+  };
+
   return (
     <main className={commonStyles.page}>
       <header className={commonStyles.header}>
@@ -39,10 +65,24 @@ function RecommendTrip() {
         <div className={commonStyles.headerPhrase}>
           <p>검색하신 관광지 포함한 여행 일정입니다.</p>
           <p> 하나를 선택하여 나만의 일정을 만들어보세요 :)</p>
+
+          <Button
+            type="button"
+            styling={styles.makeNew}
+            onClick={handleCreateNewTrip}
+          >
+            나만의 일정 만들기
+          </Button>
         </div>
       </header>
       <section>
-        <Map />
+        {/* 임시로 첫번째 path넣어둠. 백에서 존재하지 않는 좌표값을 줘서 현재 마커는 안찍힘 */}
+        <RecommendedMap
+          places={paths && paths[0]}
+          width="1200px"
+          height="434px"
+        />
+
         <div className={styles.recommendation}>
           <h2>여행 일정 추천</h2>
           <div className={styles.sliderNav}>

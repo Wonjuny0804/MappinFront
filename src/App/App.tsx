@@ -10,6 +10,7 @@ import Alert from "../components/Alert/Alert";
 import commonStyles from "../styles/common.module.scss";
 import RecommendTrip from "../pages/RecommendTrip/RecommendTrip";
 import Place from "../pages/Place/Place";
+import MyTrip from "pages/MyTrip/MyTrip";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ function App() {
         <Route exact path="/search" component={Search} />
         <Route exact path="/searchResult" component={SearchResult} />
         <Route exact path="/recommended-trip" component={RecommendTrip} />
+        <Route exact path="/my-trip" component={MyTrip} />
         <Route exact path="/place/:name" component={Place} />
       </Switch>
       <footer className={styles.footer}></footer>

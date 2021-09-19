@@ -5,6 +5,7 @@ import { tripReducer } from "./trip";
 import { searchReducer } from "./search";
 import { dateReducer } from "./date";
 import { placeReducer } from "./place";
+import { mytripReducer } from "./mytrip";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   search: searchReducer,
   date: dateReducer,
   place: placeReducer,
+  mytrip: mytripReducer,
 });
 
 export default rootReducer;

@@ -12,7 +12,6 @@ import { useHistory } from "react-router-dom";
 import { RootState } from "../../redux/store";
 import { searchPlaceAction } from "../../redux/storage/search";
 import Map from "components/Map/Map";
-
 import { useSelector, useDispatch } from "react-redux";
 import { setPlaceAction } from "redux/storage/place";
 
@@ -27,7 +26,7 @@ function Search() {
   const history = useHistory();
 
   const handleOnGoBack = (): void => {
-    history.goBack();
+    history.push("./schedule");
   };
 
   const handleOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {

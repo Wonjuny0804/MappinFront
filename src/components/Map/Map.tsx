@@ -5,9 +5,10 @@ import customMarker from "./assets/mappinCustomMarker.png";
 import { CustomOverlay } from "components";
 import { setPlaceAction } from "redux/storage/place";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 declare const kakao: any;
-interface placeProps {
+export interface placeProps {
   y: number;
   x: number;
   place_name: string;
@@ -23,6 +24,7 @@ interface MapProps {
 
 function Map({ searchKeyWord, width, height, className }: MapProps) {
   const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => {
     kakao.maps.load(() => {
       const container = document.getElementById("map");
@@ -87,6 +89,7 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
               keywords: [place.category_group_name],
             })
           );
+          history.push("/recommended-trip");
         }
 
         function closeOverlay() {
@@ -124,7 +127,7 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
 
       places.keywordSearch(searchKeyWord, placesSearchCB);
     });
-  }, [searchKeyWord]);
+  }, [dispatch, history, searchKeyWord]);
 
   return (
     <div

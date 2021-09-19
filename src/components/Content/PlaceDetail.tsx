@@ -13,22 +13,33 @@ interface place {
 
 interface PlaceDetailProps {
   place?: place;
+  index?: number;
 }
 
 //
-function PlaceDetail({ place }: PlaceDetailProps): JSX.Element {
+function PlaceDetail({ place, index }: PlaceDetailProps): JSX.Element {
   return (
     <article className={styles.content}>
-      <Icon type="Ellipse" />
-      <img src={place?.thumbnail} alt={`${place?.name}의 이미지`} />
+      <div className={styles.order}>
+        <span className={styles.index}>{index}</span>
+        <Icon type="Ellipse" />
+      </div>
+      <img
+        src={place?.thumbnail || "/assets/fallback-image.png"}
+        alt={`${place?.name}의 이미지`}
+      />
       <div className={styles.details}>
-        <h2> {place?.name}</h2>
+        <h2>{place?.name}</h2>
         <div className={styles.keyword}>
-          {place?.keywords.map((keyword) => (
-            <Keyword title={keyword} />
-          ))}
+          {place?.keywords[0] !== "" &&
+            place?.keywords.map((keyword, index) => (
+              <Keyword key={index} title={keyword} />
+            ))}
         </div>
-        <p>{place?.detail}</p>
+        <p>
+          {place?.detail ||
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}
+        </p>
       </div>
     </article>
   );
