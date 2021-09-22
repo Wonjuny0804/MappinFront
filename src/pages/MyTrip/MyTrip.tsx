@@ -4,15 +4,14 @@ import { Button, Icon, PageNav } from "../../components";
 import styles from "./MyTrip.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import Slider from "react-slick";
-import TripRecommendCard from "../../components/TripRecommendCard/TripRecommendCard";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "redux/store";
-import RecommendedMap from "components/Map/RecommendedMap";
 import IconButton from "components/IconButton/IconButton";
 import Card from "components/Card/Card";
 import PlaceDetail from "components/Content/PlaceDetail";
 import classNames from "classnames";
 import { searchPlaceAction } from "redux/storage/search";
+import { deleteTripAction } from "redux/storage/mytrip";
 
 function MyTrip({ location }: any) {
   const history = useHistory();
@@ -44,6 +43,7 @@ function MyTrip({ location }: any) {
   const toggleMode = () => {
     setVerticalMode(!verticalMode);
   };
+
   const mapContent = () => {
     return myTrip?.paths[0]?.places?.map((path: any, index: number) => {
       return (
@@ -56,7 +56,12 @@ function MyTrip({ location }: any) {
         >
           <div className={styles.card}>
             <Card>
-              <PlaceDetail index={index + 1} place={path} />
+              <PlaceDetail
+                index={index + 1}
+                place={path}
+                editMode={editMode}
+                onRemove={() => handleDeletePlace(index)}
+              />
             </Card>
             {editMode && (
               <Button
@@ -80,6 +85,11 @@ function MyTrip({ location }: any) {
     dispatch(searchPlaceAction(""));
     history.push({ pathname: "/search", state: index + "" });
   };
+
+  const handleDeletePlace = (index: number) => {
+    dispatch(deleteTripAction(index));
+  };
+
   return (
     <main className={commonStyles.page}>
       <header className={commonStyles.header}>

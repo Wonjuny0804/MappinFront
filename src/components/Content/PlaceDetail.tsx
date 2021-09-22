@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import { IconButton } from "components";
 import Icon from "../Icon/Icon";
 import Keyword from "../Keyword/Keyword";
 import styles from "./PlaceDetail.module.scss";
@@ -15,12 +15,26 @@ interface place {
 interface PlaceDetailProps {
   place?: place;
   index?: number;
+  editMode?: boolean;
+  onRemove?: () => void;
+  onEdit?: () => void;
 }
 
 //
-function PlaceDetail({ place, index }: PlaceDetailProps): JSX.Element {
+function PlaceDetail({
+  place,
+  index,
+  editMode,
+  onRemove,
+  onEdit,
+}: PlaceDetailProps): JSX.Element {
   return (
     <article className={styles.content}>
+      {editMode && (
+        <div className={styles.edit}>
+          <IconButton type="button" icon="Remove" onClick={onRemove} />
+        </div>
+      )}
       <div className={styles.order}>
         <span className={styles.index}>{index}</span>
         <Icon type="Ellipse" />

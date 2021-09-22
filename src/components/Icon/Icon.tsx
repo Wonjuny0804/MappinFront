@@ -20,6 +20,7 @@ import { ReactComponent as AddPlace } from "./assets/mappinAdd.svg";
 import { ReactComponent as CaretDown } from "./assets/CaretDown.svg";
 import { ReactComponent as Save } from "./assets/Save.svg";
 import { ReactComponent as Edit } from "./assets/Edit.svg";
+import { ReactComponent as Remove } from "./assets/Remove.svg";
 
 export interface IconProps {
   type:
@@ -43,7 +44,8 @@ export interface IconProps {
     | "AddPlace"
     | "CaretDown"
     | "Save"
-    | "Edit";
+    | "Edit"
+    | "Remove";
 }
 
 function Icon({ type }: IconProps): JSX.Element {
@@ -69,6 +71,7 @@ function Icon({ type }: IconProps): JSX.Element {
     CaretDown: <CaretDown />,
     Save: <Save />,
     Edit: <Edit />,
+    Remove: <Remove />,
   };
 
   return dataObject[type];

@@ -2,6 +2,10 @@
   display: flex;
   padding: 24px 35px;
   position: relative;
+  .edit {
+    position: absolute;
+    right: 35px;
+  }
   .order {
     position: relative;
     font-size: 25px;
