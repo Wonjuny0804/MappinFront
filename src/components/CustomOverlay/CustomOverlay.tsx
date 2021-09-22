@@ -2,7 +2,6 @@ import React from "react";
 import { IconButton } from "components";
 import styles from "./CustomOverlay.module.scss";
 import "./overlay.scss";
-import { ReactComponent as AddPlace } from "./assets/mappinAdd.svg";
 
 // interface CustomOverlayProps {
 //   name: string;

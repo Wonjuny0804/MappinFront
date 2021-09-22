@@ -17,7 +17,7 @@ function IconButton({
   className,
   icon,
 }: IconButtonProps): JSX.Element {
-  const styleClass = classNames(styles.btn, className);
+  const styleClass = classNames(className, styles.btn);
 
   return (
     <button type={type} onClick={onClick} className={styleClass}>
