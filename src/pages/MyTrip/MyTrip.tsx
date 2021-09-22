@@ -12,18 +12,24 @@ import IconButton from "components/IconButton/IconButton";
 import Card from "components/Card/Card";
 import PlaceDetail from "components/Content/PlaceDetail";
 import classNames from "classnames";
+import { searchPlaceAction } from "redux/storage/search";
 
-function MyTrip() {
+function MyTrip({ location }: any) {
   const history = useHistory();
   const slider = useRef<Slider | null>(null);
 
-  const { mytrip }: any = useSelector((state: RootState) => state.mytrip);
+  const { myTrip }: any = useSelector((state: RootState) => state.mytrip);
+
   const handleOnGoBack = (): void => {
     history.push("/recommended-trip");
   };
   const dispatch = useDispatch();
-  const [verticalMode, setVerticalMode] = useState(false);
-  const [editMode, setEditMode] = useState(false);
+  const [verticalMode, setVerticalMode] = useState(
+    location.state === "edit" ? true : false
+  );
+  const [editMode, setEditMode] = useState(
+    location.state === "edit" ? true : false
+  );
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const settings = {
@@ -38,17 +44,27 @@ function MyTrip() {
   const toggleMode = () => {
     setVerticalMode(!verticalMode);
   };
-
   const mapContent = () => {
-    return mytrip?.paths?.map((path: any, index: number) => {
+    return myTrip?.paths[0]?.places?.map((path: any, index: number) => {
       return (
-        <div className={styles.cardContainer} key={index}>
+        <div
+          className={styles.cardContainer}
+          style={
+            editMode ? { marginBottom: "50px" } : { marginBottom: "100px" }
+          }
+          key={index}
+        >
           <div className={styles.card}>
             <Card>
-              <PlaceDetail index={index + 1} place={path.places[0]} />
+              <PlaceDetail index={index + 1} place={path} />
             </Card>
             {editMode && (
-              <Button secondary styling={styles.addBtn} type="button">
+              <Button
+                onClick={() => handleAddPlace(index + 1)}
+                secondary
+                styling={styles.addBtn}
+                type="button"
+              >
                 <>
                   <Icon type="PlusGrey" /> 추가
                 </>
@@ -60,10 +76,14 @@ function MyTrip() {
     });
   };
 
+  const handleAddPlace = (index: number) => {
+    dispatch(searchPlaceAction(""));
+    history.push({ pathname: "/search", state: index + "" });
+  };
   return (
     <main className={commonStyles.page}>
       <header className={commonStyles.header}>
-        <h1 className={commonStyles.headerTitle}>일정 선택</h1>
+        <h1 className={commonStyles.headerTitle}>여행 일정</h1>
         <div className={commonStyles.headerPhrase}>
           <p>선택하신 여행 일정입니다. 나만의 일정으로 만들어보세요!</p>
         </div>
@@ -150,7 +170,7 @@ function MyTrip() {
             )}
           </div>
         </div>
-        {mytrip && !verticalMode && (
+        {myTrip && !verticalMode && (
           <IconButton
             type="button"
             onClick={toggleMode}

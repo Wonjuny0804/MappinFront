@@ -6,6 +6,7 @@ import { CustomOverlay } from "components";
 import { setPlaceAction } from "redux/storage/place";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { addNewTripAction } from "redux/storage/mytrip";
 
 declare const kakao: any;
 export interface placeProps {
@@ -20,9 +21,16 @@ interface MapProps {
   width?: string;
   height?: string;
   className?: string;
+  editIndex?: number;
 }
 
-function Map({ searchKeyWord, width, height, className }: MapProps) {
+function Map({
+  searchKeyWord = "",
+  width,
+  height,
+  className,
+  editIndex,
+}: MapProps) {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
@@ -81,15 +89,27 @@ function Map({ searchKeyWord, width, height, className }: MapProps) {
         });
 
         function handleSelect() {
-          dispatch(
-            setPlaceAction({
-              name: place.place_name,
-              lat: place.y,
-              lng: place.x,
-              keywords: [place.category_group_name],
-            })
-          );
-          history.push("/recommended-trip");
+          if (editIndex) {
+            dispatch(
+              addNewTripAction(editIndex, {
+                name: place.place_name,
+                lat: place.y,
+                lng: place.x,
+                keywords: [place.category_group_name],
+              })
+            );
+            history.push({ pathname: "/my-trip", state: "edit" });
+          } else {
+            dispatch(
+              setPlaceAction({
+                name: place.place_name,
+                lat: place.y,
+                lng: place.x,
+                keywords: [place.category_group_name],
+              })
+            );
+            history.push("/recommended-trip");
+          }
         }
 
         function closeOverlay() {

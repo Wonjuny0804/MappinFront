@@ -15,10 +15,11 @@ import Map from "components/Map/Map";
 import { useSelector, useDispatch } from "react-redux";
 import { setPlaceAction } from "redux/storage/place";
 
-function Search() {
+function Search({ location }: any) {
   // const [recommendWords, setRecommendWords] = useState<
   //   Array<{ name: string; url: string }>
   // >([]);
+
   const dispatch = useDispatch();
   const keyWord = useSelector((state: RootState) => state.search.searchKeyWord);
   const { selectedPlace }: any = useSelector((state: RootState) => state.place);
@@ -26,7 +27,7 @@ function Search() {
   const history = useHistory();
 
   const handleOnGoBack = (): void => {
-    history.push("./schedule");
+    !location.state ? history.push("./schedule") : history.push("./my-trip");
   };
 
   const handleOnEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -39,7 +40,7 @@ function Search() {
     }
   };
 
-  const props = {
+  const inputProps = {
     onKeyUp: handleOnEnter,
   };
 
@@ -62,10 +63,9 @@ function Search() {
         secondary={false}
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
-        value={selectedPlace?.name}
-        rest={props}
+        value={!location.state ? selectedPlace?.name : ""}
+        rest={inputProps}
       />
-
       {/* <section className={styles.recommendWord}>
         <h2>추천 검색어</h2>
         <div>
@@ -93,6 +93,7 @@ function Search() {
           width="1200px"
           height="434px"
           className={styles.mapStyle}
+          editIndex={location.state}
         />
       )}
       <PageNav prevOnClick={handleOnGoBack} />

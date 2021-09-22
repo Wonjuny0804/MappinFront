@@ -22,6 +22,7 @@
         border: 1px solid #aeaeae;
         border-radius: 26.5px;
         text-align: center;
+        min-height: 50px;
       }
       .active {
         font-weight: 700;
@@ -84,8 +85,8 @@
     .sliderContainer {
       position: relative;
       .cardContainer {
-        max-width: 910px;
         margin: 0 auto;
+        max-width: 910px;
       }
       .slider {
         .card {
@@ -133,11 +134,12 @@
 }
 
 .addBtn {
+  margin-top: 50px;
   font-size: 18px;
   color: #aeaeae;
   border: 1px solid #aeaeae;
   border-radius: 26.5px;
-  margin-top: 30px;
+  padding: 10px;
   svg {
     height: 15px;
     margin-right: 10px;

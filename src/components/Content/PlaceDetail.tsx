@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Icon from "../Icon/Icon";
 import Keyword from "../Keyword/Keyword";
 import styles from "./PlaceDetail.module.scss";
@@ -31,10 +32,13 @@ function PlaceDetail({ place, index }: PlaceDetailProps): JSX.Element {
       <div className={styles.details}>
         <h2>{place?.name}</h2>
         <div className={styles.keyword}>
-          {place?.keywords[0] !== "" &&
+          {place?.keywords[0] === "" ? (
+            <Keyword key={index} title="없음" />
+          ) : (
             place?.keywords.map((keyword, index) => (
               <Keyword key={index} title={keyword} />
-            ))}
+            ))
+          )}
         </div>
         <p>
           {place?.detail ||
