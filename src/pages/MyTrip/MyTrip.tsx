@@ -11,7 +11,7 @@ import Card from "components/Card/Card";
 import PlaceDetail from "components/Content/PlaceDetail";
 import classNames from "classnames";
 import { searchPlaceAction } from "redux/storage/search";
-import { deleteTripAction } from "redux/storage/mytrip";
+import { deleteTripAction, postTripAction } from "redux/storage/mytrip";
 
 function MyTrip({ location }: any) {
   const history = useHistory();
@@ -90,6 +90,14 @@ function MyTrip({ location }: any) {
     dispatch(deleteTripAction(index));
   };
 
+  const handleSaveTrip = () => {
+    if (editMode) {
+      setEditMode(false);
+    } else {
+      dispatch(postTripAction(myTrip));
+    }
+  };
+
   return (
     <main className={commonStyles.page}>
       <header className={commonStyles.header}>
@@ -101,7 +109,7 @@ function MyTrip({ location }: any) {
       <section className={styles.container}>
         <div className={styles.mytrip}>
           <header className={verticalMode ? styles.verticalHeader : ""}>
-            <h2>나를 위로하는 애월 여행</h2>
+            <h2>{myTrip.title}</h2>
 
             <div
               className={classNames(
@@ -135,7 +143,7 @@ function MyTrip({ location }: any) {
                       styles.saveBtn,
                       editMode && styles.editModeSave
                     )}
-                    onClick={() => setEditMode(false)}
+                    onClick={handleSaveTrip}
                   >
                     <>
                       <span className={styles.btnStatus}>

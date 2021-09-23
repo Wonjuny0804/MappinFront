@@ -18,10 +18,12 @@ function RecommendTrip() {
 
   const { selectedPlace }: any = useSelector((state: RootState) => state.place);
   const { paths }: any = useSelector((state: RootStateOrAny) => state.trip);
+  const { startDate, endDate } = useSelector((state: RootState) => state.date);
 
   const handleOnGoBack = (): void => {
     history.push("/search");
   };
+
   const dispatch = useDispatch();
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -44,9 +46,9 @@ function RecommendTrip() {
     history.push("/my-trip");
     dispatch(
       setMyTripAction({
-        title: "first trip",
-        startDate: "2021-08-10",
-        endDate: "2021-08-12",
+        title: "나만의 여행",
+        startDate: startDate,
+        endDate: endDate,
         memo: "test",
         paths: [
           {
