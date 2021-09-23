@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useCallback, useRef, ChangeEvent } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Icon, PageNav } from "../../components";
 import styles from "./MyTrip.module.scss";
@@ -11,7 +11,11 @@ import Card from "components/Card/Card";
 import PlaceDetail from "components/Content/PlaceDetail";
 import classNames from "classnames";
 import { searchPlaceAction } from "redux/storage/search";
-import { deleteTripAction, postTripAction } from "redux/storage/mytrip";
+import {
+  deleteTripAction,
+  editTripTitleAction,
+  postTripAction,
+} from "redux/storage/mytrip";
 
 function MyTrip({ location }: any) {
   const history = useHistory();
@@ -22,6 +26,7 @@ function MyTrip({ location }: any) {
   const handleOnGoBack = (): void => {
     history.push("/recommended-trip");
   };
+
   const dispatch = useDispatch();
   const [verticalMode, setVerticalMode] = useState(
     location.state === "edit" ? true : false
@@ -90,6 +95,13 @@ function MyTrip({ location }: any) {
     dispatch(deleteTripAction(index));
   };
 
+  const handleTitleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      dispatch(editTripTitleAction(e.target.value));
+    },
+    [dispatch]
+  );
+
   const handleSaveTrip = () => {
     if (editMode) {
       setEditMode(false);
@@ -109,7 +121,16 @@ function MyTrip({ location }: any) {
       <section className={styles.container}>
         <div className={styles.mytrip}>
           <header className={verticalMode ? styles.verticalHeader : ""}>
-            <h2>{myTrip.title}</h2>
+            {editMode ? (
+              <h2>
+                <input
+                  onChange={handleTitleChange}
+                  defaultValue={myTrip.title}
+                />
+              </h2>
+            ) : (
+              <h2>{myTrip.title}</h2>
+            )}
 
             <div
               className={classNames(

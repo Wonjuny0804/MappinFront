@@ -7,6 +7,7 @@ import { place } from "./place";
 const SET_MY_TRIP = "나만의 일정 생성";
 const ADD_MY_TRIP = "새로운 여행 장소 추가";
 const DELETE_MY_TRIP = "여행 장소 삭제";
+const EDIT_MY_TRIP_TITLE = "일정 제목 변경";
 const POST_MY_TRIP_REQUEST = "여행 장소 저장 요청";
 const POST_MY_TRIP_SUCCESS = "여행 장소 저장 성공";
 const POST_MY_TRIP_FAIL = "여행 장소 저장 실패";
@@ -24,6 +25,7 @@ interface actionProps {
   myTrip: myTrip;
   newTrip: any;
   index: number;
+  title: string;
 }
 
 const initialState = {
@@ -49,6 +51,10 @@ export const addNewTripAction = (index: number, newPlace: place) => {
 
 export const deleteTripAction = (index: number) => {
   return { type: DELETE_MY_TRIP, index: index };
+};
+
+export const editTripTitleAction = (title: string) => {
+  return { type: EDIT_MY_TRIP_TITLE, title: title };
 };
 
 export const postTripAction = (myTrip: myTrip) => {
@@ -125,6 +131,11 @@ export function mytripReducer(state = initialState, action: actionProps) {
             },
           ],
         },
+      };
+    case EDIT_MY_TRIP_TITLE:
+      return {
+        ...state,
+        myTrip: { ...state.myTrip, title: action.title },
       };
     default:
       return state;
