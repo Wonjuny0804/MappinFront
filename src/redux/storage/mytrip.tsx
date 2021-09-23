@@ -39,7 +39,7 @@ const initialState = {
   },
 };
 
-export const setMyTripAction = (myTrip: myTrip) => {
+export const setMyTripAction = (myTrip: myTrip | null) => {
   return { type: SET_MY_TRIP, myTrip: myTrip };
 };
 
@@ -72,7 +72,6 @@ export const postTripAction = (myTrip: myTrip) => {
           option
         )
         .then(({ data }) => {
-          console.log(data);
           dispatch({ type: POST_MY_TRIP_SUCCESS });
           dispatch(success("성공적으로 저장 되었습니다"));
           setTimeout(() => {
@@ -80,7 +79,6 @@ export const postTripAction = (myTrip: myTrip) => {
           }, 3000);
         })
         .catch((err) => {
-          console.log(err.message);
           dispatch({ type: POST_MY_TRIP_FAIL });
           dispatch(error("저장중 오류가 발생했습니다"));
           setTimeout(() => {

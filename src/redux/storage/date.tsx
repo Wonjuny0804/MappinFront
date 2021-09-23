@@ -12,7 +12,10 @@ const initialState = {
   endDate: null,
 };
 
-export const setDateAction = (startDate: Moment, endDate: Moment) => {
+export const setDateAction = (
+  startDate: Moment | null,
+  endDate: Moment | null
+) => {
   return {
     type: SET_DATE,
     startDate,

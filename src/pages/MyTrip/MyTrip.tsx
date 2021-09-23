@@ -113,8 +113,8 @@ function MyTrip({ location }: any) {
 
             <div
               className={classNames(
-                verticalMode && styles.editModeOption,
-                styles.options
+                styles.options,
+                verticalMode && styles.editModeOption
               )}
             >
               <div className={styles.dayContainer}>
@@ -172,7 +172,9 @@ function MyTrip({ location }: any) {
                   secondary
                   type="button"
                   onClick={() => slider?.current?.slickNext()}
-                  // disabled={currentSlide === paths?.length - 1}
+                  disabled={
+                    currentSlide === myTrip?.paths[0]?.places.length - 1
+                  }
                 >
                   <Icon type="Next" />
                 </Button>
