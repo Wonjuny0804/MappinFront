@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Icon, Button, RecommendCard } from "../../components";
+import { Icon, Button } from "../../components";
 import styles from "./Home.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import { useHistory } from "react-router-dom";
@@ -12,6 +12,7 @@ import { setDateAction } from "redux/storage/date";
 import { setMyTripAction } from "redux/storage/mytrip";
 import { setPlaceAction } from "redux/storage/place";
 import { searchPlaceAction } from "redux/storage/search";
+import moment from "moment";
 
 function Home() {
   const history = useHistory();
@@ -30,13 +31,28 @@ function Home() {
     }
   }, [dispatch, user]);
 
-  const handleOnClick = (): void => {
+  const handleOnCreate = (): void => {
     // 이전에 작성하던것이 있다면 전부 초기화
     dispatch(setDateAction(null, null));
     dispatch(searchPlaceAction(""));
     dispatch(setPlaceAction(null));
     dispatch(setMyTripAction(null));
     history.push("/schedule");
+  };
+
+  const handleOnView = (id: number): void => {
+    const selectedTrip = trips?.find((trip: any) => {
+      return trip.id === id;
+    });
+
+    dispatch(
+      setMyTripAction({
+        ...selectedTrip,
+        startDate: moment(selectedTrip.startDate, "YYYY-MM-DD"),
+        endDate: moment(selectedTrip.endDate, "YYYY-MM-DD"),
+      })
+    );
+    history.push({ pathname: "/my-trip", state: { id: id } });
   };
 
   return (
@@ -59,18 +75,19 @@ function Home() {
             {/* TODO: trip 인터페이스로 교체 */}
             <section className={styles.mytrip}>
               {isLoading && <TripInfoCard loading={isLoading} />}
-              {trips?.map((trip: any, index: number) => {
+              {trips?.map((trip: any) => {
                 return (
                   <TripInfoCard
-                    key={index}
+                    key={trip.id}
                     title={trip.title}
                     imageURL="https://images.unsplash.com/photo-1595737361672-ae84c6ca2298?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80"
                     startDate={new Date(trip.startDate)}
                     endDate={new Date(trip.endDate)}
+                    onView={() => handleOnView(trip.id)}
                   />
                 );
               })}
-              <TripInfoCard addNew onClick={handleOnClick} />
+              <TripInfoCard addNew onClick={handleOnCreate} />
             </section>
 
             <section className={styles.wishTrip}>
@@ -95,7 +112,7 @@ function Home() {
               children="일정 만들기"
               secondary={false}
               styling={styles.button}
-              onClick={handleOnClick}
+              onClick={handleOnCreate}
             />
           </div>
         )}

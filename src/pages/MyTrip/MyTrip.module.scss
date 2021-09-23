@@ -3,6 +3,7 @@
   .mytrip {
     position: relative;
     header {
+      margin-top: 40px;
       h2 {
         margin: 0;
         input {
@@ -13,7 +14,6 @@
           padding: 6px;
         }
       }
-      margin: 40px 0 30px 0;
       .options {
         display: flex;
         justify-content: center;

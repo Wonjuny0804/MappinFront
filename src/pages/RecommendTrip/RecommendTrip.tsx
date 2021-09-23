@@ -45,25 +45,20 @@ function RecommendTrip() {
   };
 
   const handleCreateNewTrip = () => {
-    // 작성중인 일정이 있다면 해당 일정 불러오도록 설정
-    if (myTrip) {
-      dispatch(setMyTripAction(myTrip));
-    } else {
-      dispatch(
-        setMyTripAction({
-          title: "나만의 여행",
-          startDate: startDate,
-          endDate: endDate,
-          memo: "test",
-          paths: [
-            {
-              id: 1,
-              places: [selectedPlace],
-            },
-          ],
-        })
-      );
-    }
+    dispatch(
+      setMyTripAction({
+        title: "나만의 여행",
+        startDate: startDate,
+        endDate: endDate,
+        memo: "test",
+        paths: [
+          {
+            id: 1,
+            places: [selectedPlace],
+          },
+        ],
+      })
+    );
 
     history.push("/my-trip");
   };

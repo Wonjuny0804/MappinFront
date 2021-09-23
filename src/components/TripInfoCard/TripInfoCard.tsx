@@ -8,6 +8,7 @@ import classNames from "classnames";
 interface TripInfoCardProps {
   addNew?: boolean;
   onClick?: () => void;
+  onView?: () => void;
   loading?: boolean;
   imageURL?: string;
   title?: string;
@@ -18,6 +19,7 @@ interface TripInfoCardProps {
 function TripInfoCard({
   addNew,
   onClick,
+  onView,
   loading,
   imageURL,
   title,
@@ -45,7 +47,7 @@ function TripInfoCard({
     );
   }
   return (
-    <article className={styles.cardWrapper}>
+    <article className={styles.cardWrapper} onClick={onView}>
       {loading ? (
         <>
           <Skeleton height={190} />

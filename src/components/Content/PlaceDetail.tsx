@@ -46,7 +46,7 @@ function PlaceDetail({
       <div className={styles.details}>
         <h2>{place?.name}</h2>
         <div className={styles.keyword}>
-          {place?.keywords[0] === "" ? (
+          {!place?.keywords || place?.keywords[0] === "" ? (
             <Keyword key={index} title="없음" />
           ) : (
             place?.keywords.map((keyword, index) => (

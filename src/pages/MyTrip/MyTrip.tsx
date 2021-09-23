@@ -17,6 +17,10 @@ import {
   postTripAction,
 } from "redux/storage/mytrip";
 
+// location.state 는 인덱스(숫자일경우)이거나 edit상태여부임
+// location.state 가 edit일때는 세로모드/수정모드가 초기값
+// location.state 가 인덱스일때는 뒤로가기 위치가 일정 선택페이지가 아닌 schedule 페이지
+
 function MyTrip({ location }: any) {
   const history = useHistory();
   const slider = useRef<Slider | null>(null);
@@ -24,7 +28,7 @@ function MyTrip({ location }: any) {
   const { myTrip }: any = useSelector((state: RootState) => state.mytrip);
 
   const handleOnGoBack = (): void => {
-    history.push("/recommended-trip");
+    location.state.id ? history.push("/") : history.push("/recommended-trip");
   };
 
   const dispatch = useDispatch();
