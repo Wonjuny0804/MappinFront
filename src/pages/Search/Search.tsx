@@ -28,7 +28,7 @@ function Search({ location }: any) {
 
   // location.state 는 장소가 추가될 인덱스를 가지고있음 (이값이 undefined가 아니라면 전 단계가 수정 페이지)
   const handleOnGoBack = (): void => {
-    !location.state
+    !location.state.index
       ? history.push("./schedule")
       : history.push({ pathname: "/my-trip", state: "edit" });
   };
@@ -51,7 +51,7 @@ function Search({ location }: any) {
     <main className={styles.pageLayout}>
       <div className={styles.header}>
         <h1 className={commonStyles.headerTitle}>
-          관광지 {location.state ? "추가" : "검색"}
+          관광지 {location?.state?.index ? "추가" : "검색"}
         </h1>
         <div className={commonStyles.headerPhrase}>
           <p>
@@ -70,7 +70,6 @@ function Search({ location }: any) {
         secondary={false}
         label="가고싶은 곳을 검색해 보세요"
         icon={<Icon type="Search" />}
-        value={!location.state ? selectedPlace?.name : ""}
         rest={inputProps}
       />
       {/* <section className={styles.recommendWord}>
@@ -100,7 +99,8 @@ function Search({ location }: any) {
           width="1200px"
           height="434px"
           className={styles.mapStyle}
-          editIndex={location.state}
+          editIndex={location?.state?.index}
+          day={location?.state?.day}
         />
       )}
       <PageNav prevOnClick={handleOnGoBack} />

@@ -22,6 +22,7 @@ interface MapProps {
   height?: string;
   className?: string;
   editIndex?: number;
+  day?: number;
 }
 
 function Map({
@@ -30,6 +31,7 @@ function Map({
   height,
   className,
   editIndex,
+  day,
 }: MapProps) {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -89,16 +91,20 @@ function Map({
         });
 
         function handleSelect() {
-          if (editIndex) {
+          // 수정 인덱스가 0 일때 타입변환으로 인해 false로 평가되기때문에 숫자인지 아닌지 확인
+          if (typeof editIndex === "number" && day) {
             dispatch(
-              addNewTripAction(editIndex, {
+              addNewTripAction(editIndex, day, {
                 name: place.place_name,
                 lat: place.y,
                 lng: place.x,
                 keywords: [place.category_group_name],
               })
             );
-            history.push({ pathname: "/my-trip", state: "edit" });
+            history.push({
+              pathname: "/my-trip",
+              state: { mode: "edit", day },
+            });
           } else {
             dispatch(
               setPlaceAction({
