@@ -77,7 +77,7 @@ function MyTrip({ location }: any) {
                   index={index + 1}
                   place={path}
                   editMode={editMode}
-                  onRemove={() => handleDeletePlace(index)}
+                  onRemove={() => handleDeletePlace(index, selectedDay)}
                 />
               </Card>
               {editMode && (
@@ -103,8 +103,8 @@ function MyTrip({ location }: any) {
     history.push({ pathname: "/search", state: { index, day } });
   };
 
-  const handleDeletePlace = (index: number) => {
-    dispatch(deleteTripAction(index));
+  const handleDeletePlace = (index: number, day: number) => {
+    dispatch(deleteTripAction(index, day));
   };
 
   const handleTitleChange = useCallback(

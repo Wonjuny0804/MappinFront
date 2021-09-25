@@ -28,7 +28,7 @@ function Search({ location }: any) {
 
   // location.state 는 장소가 추가될 인덱스를 가지고있음 (이값이 undefined가 아니라면 전 단계가 수정 페이지)
   const handleOnGoBack = (): void => {
-    !location.state.index
+    !location.state?.index
       ? history.push("./schedule")
       : history.push({ pathname: "/my-trip", state: "edit" });
   };

@@ -6,7 +6,7 @@ import { place } from "./place";
 
 const SET_MY_TRIP = "나만의 일정 생성";
 const ADD_NEW_PLACE = "새로운 여행 장소 추가";
-const DELETE_MY_TRIP = "여행 장소 삭제";
+const DELETE_PLACE = "여행 장소 삭제";
 const EDIT_MY_TRIP_TITLE = "일정 제목 변경";
 
 const SET_NEW_DAY = "새로운 일정 추가";
@@ -65,8 +65,8 @@ export const setNewDayAction = (day: number) => {
   return { type: SET_NEW_DAY, day: day };
 };
 
-export const deleteTripAction = (index: number) => {
-  return { type: DELETE_MY_TRIP, index: index };
+export const deleteTripAction = (index: number, day: number) => {
+  return { type: DELETE_PLACE, newTrip: { index, day } };
 };
 
 export const editTripTitleAction = (title: string) => {
@@ -183,22 +183,25 @@ export function mytripReducer(state = initialState, action: actionProps) {
           }),
         },
       };
-    case DELETE_MY_TRIP:
+    case DELETE_PLACE:
       return {
         ...state,
         myTrip: {
           ...state.myTrip,
-          paths: [
-            {
-              places: state.myTrip.paths[0].places.filter(
-                (place: place, index: number) => {
-                  return index !== action.index;
-                }
-              ),
-            },
-          ],
+          paths: state.myTrip.paths.map((path) => {
+            if (path.id === action.newTrip.day) {
+              return {
+                id: path.id,
+                places: path.places.filter((place: place, index: number) => {
+                  return index !== action.newTrip.index;
+                }),
+              };
+            }
+            return { id: path.id, places: path.places };
+          }),
         },
       };
+
     case EDIT_MY_TRIP_TITLE:
       return {
         ...state,
