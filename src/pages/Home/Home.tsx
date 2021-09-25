@@ -9,7 +9,7 @@ import TripInfoCard from "../../components/TripInfoCard/TripInfoCard";
 import { fetchAllTrip } from "../../redux/storage/trip";
 import TripWishCard from "../../components/TripWishCard/TripWishCard";
 import { setDateAction } from "redux/storage/date";
-import { setMyTripAction } from "redux/storage/mytrip";
+import { deleteTripAction, setMyTripAction } from "redux/storage/mytrip";
 import { setPlaceAction } from "redux/storage/place";
 import { searchPlaceAction } from "redux/storage/search";
 import moment from "moment";
@@ -55,6 +55,10 @@ function Home() {
     history.push({ pathname: "/my-trip", state: { id: id } });
   };
 
+  const handleRemoveTrip = (id: number) => {
+    dispatch(deleteTripAction(id));
+  };
+
   return (
     <div>
       <header className={commonStyles.header}>
@@ -84,6 +88,7 @@ function Home() {
                     startDate={new Date(trip.startDate)}
                     endDate={new Date(trip.endDate)}
                     onView={() => handleOnView(trip.id)}
+                    onRemove={() => handleRemoveTrip(trip.id)}
                   />
                 );
               })}

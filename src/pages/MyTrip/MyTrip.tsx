@@ -11,7 +11,7 @@ import Card from "components/Card/Card";
 import PlaceDetail from "components/Content/PlaceDetail";
 import classNames from "classnames";
 import {
-  deleteTripAction,
+  deletePlaceAction,
   editTripAction,
   editTripTitleAction,
   postTripAction,
@@ -104,7 +104,7 @@ function MyTrip({ location }: any) {
   };
 
   const handleDeletePlace = (index: number, day: number) => {
-    dispatch(deleteTripAction(index, day));
+    dispatch(deletePlaceAction(index, day));
   };
 
   const handleTitleChange = useCallback(
@@ -120,9 +120,11 @@ function MyTrip({ location }: any) {
     } else if (location.state.id) {
       // 편집일때
       dispatch(editTripAction(myTrip, location.state.id));
+      history.push("/");
     } else {
       // 새로운 여행 추가일때
       dispatch(postTripAction(myTrip));
+      history.push("/");
     }
   };
 

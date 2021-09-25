@@ -7,8 +7,9 @@ import styles from "./IconButton.module.scss";
 interface IconButtonProps extends React.HTMLProps<HTMLButtonElement> {
   type: "button" | "submit" | "reset";
   icon: IconProps["type"];
-  onClick?: () => void;
+  onClick?: (e: any) => void;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 function IconButton({
@@ -16,11 +17,12 @@ function IconButton({
   onClick,
   className,
   icon,
+  style,
 }: IconButtonProps): JSX.Element {
   const styleClass = classNames(className, styles.btn);
 
   return (
-    <button type={type} onClick={onClick} className={styleClass}>
+    <button style={style} type={type} onClick={onClick} className={styleClass}>
       <Icon type={icon} />
     </button>
   );

@@ -18,7 +18,6 @@ function RecommendTrip() {
 
   const { selectedPlace }: any = useSelector((state: RootState) => state.place);
   const { paths }: any = useSelector((state: RootStateOrAny) => state.trip);
-  const { myTrip }: any = useSelector((state: RootState) => state.mytrip);
 
   const { startDate, endDate } = useSelector((state: RootState) => state.date);
 
@@ -31,7 +30,7 @@ function RecommendTrip() {
 
   useEffect(() => {
     if (selectedPlace) {
-      dispatch(fetchRecommendedTrip(789.789, 321.321));
+      dispatch(fetchRecommendedTrip(selectedPlace.lat, selectedPlace.lng));
     }
   }, [dispatch, selectedPlace]);
 
@@ -59,7 +58,6 @@ function RecommendTrip() {
         ],
       })
     );
-
     history.push("/my-trip");
   };
 
@@ -90,38 +88,44 @@ function RecommendTrip() {
 
         <div className={styles.recommendation}>
           <h2>여행 일정 추천</h2>
-          <div className={styles.sliderNav}>
-            <Button
-              secondary
-              type="button"
-              onClick={() => slider?.current?.slickPrev()}
-              disabled={currentSlide === 0}
-            >
-              <Icon type="Prev" />
-            </Button>
-            <Button
-              secondary
-              type="button"
-              onClick={() => slider?.current?.slickNext()}
-              disabled={currentSlide === paths?.length - 1}
-            >
-              <Icon type="Next" />
-            </Button>
-          </div>
-          <Slider ref={slider} {...settings} className={styles.slider}>
-            {paths?.map((path: any, index: number) => {
-              return (
-                <div className={styles.card} key={index}>
-                  <TripRecommendCard
-                    index={index + 1}
-                    title={`${index + 1}`}
-                    style={{ marginRight: "30px" }}
-                    path={path.places}
-                  />
-                </div>
-              );
-            })}
-          </Slider>
+          {paths ? (
+            <>
+              <div className={styles.sliderNav}>
+                <Button
+                  secondary
+                  type="button"
+                  onClick={() => slider?.current?.slickPrev()}
+                  disabled={currentSlide === 0}
+                >
+                  <Icon type="Prev" />
+                </Button>
+                <Button
+                  secondary
+                  type="button"
+                  onClick={() => slider?.current?.slickNext()}
+                  disabled={currentSlide === paths?.length - 1}
+                >
+                  <Icon type="Next" />
+                </Button>
+              </div>
+              <Slider ref={slider} {...settings} className={styles.slider}>
+                {paths?.map((path: any, index: number) => {
+                  return (
+                    <div className={styles.card} key={index}>
+                      <TripRecommendCard
+                        index={index + 1}
+                        title={`${index + 1}`}
+                        style={{ marginRight: "30px" }}
+                        path={path.places}
+                      />
+                    </div>
+                  );
+                })}
+              </Slider>
+            </>
+          ) : (
+            <p className={styles.noPathText}>추천 일정이 없어요</p>
+          )}
         </div>
       </section>
       <PageNav prevOnClick={handleOnGoBack} />

@@ -3,6 +3,7 @@ import { Moment } from "moment";
 import { authHeader } from "utils/auth";
 import { clear, error, success } from "./alert";
 import { place } from "./place";
+import { fetchAllTrip } from "./trip";
 
 const SET_MY_TRIP = "나만의 일정 생성";
 const ADD_NEW_PLACE = "새로운 여행 장소 추가";
@@ -18,6 +19,10 @@ const POST_MY_TRIP_FAIL = "여행 장소 저장 실패";
 const EDIT_MY_TRIP_REQUEST = "여행 장소 수정 요청";
 const EDIT_MY_TRIP_SUCCESS = "여행 장소 수정 성공";
 const EDIT_MY_TRIP_FAIL = "여행 장소 수정 실패";
+
+const DELETE_MY_TRIP_REQUEST = "여행 장소 삭제 요청";
+const DELETE_MY_TRIP_SUCCESS = "여행 장소 삭제 성공";
+const DELETE_MY_TRIP_FAIL = "여행 장소 삭제 실패";
 
 // 필요한거 추가해서 쓰기
 export interface myTrip {
@@ -65,7 +70,7 @@ export const setNewDayAction = (day: number) => {
   return { type: SET_NEW_DAY, day: day };
 };
 
-export const deleteTripAction = (index: number, day: number) => {
+export const deletePlaceAction = (index: number, day: number) => {
   return { type: DELETE_PLACE, newTrip: { index, day } };
 };
 
@@ -95,6 +100,8 @@ export const postTripAction = (myTrip: myTrip) => {
         )
         .then(({ data }) => {
           dispatch({ type: POST_MY_TRIP_SUCCESS });
+          // 모든일정 재요청 (추후에 모든 일정 재요청말고 추가된것만 기존의 일정에 붙혀넣기로 바꾸기)
+          dispatch(fetchAllTrip());
           dispatch(success("성공적으로 저장 되었습니다"));
           setTimeout(() => {
             dispatch(clear());
@@ -142,6 +149,37 @@ export const editTripAction = (myTrip: myTrip, id: number) => {
         .catch((err) => {
           dispatch({ type: EDIT_MY_TRIP_FAIL });
           dispatch(error("저장중 오류가 발생했습니다"));
+          setTimeout(() => {
+            dispatch(clear());
+          }, 3000);
+        });
+    }
+  };
+};
+
+export const deleteTripAction = (id: number) => {
+  return (dispatch: any) => {
+    const option = {
+      headers: {
+        Authorization: authHeader(),
+      },
+    };
+    if (authHeader()) {
+      dispatch({ type: DELETE_MY_TRIP_REQUEST });
+      axios
+        .delete(`/api/v1/trips/${id}`, option)
+        .then(({ data }) => {
+          dispatch({ type: DELETE_MY_TRIP_SUCCESS });
+          // 모든일정 재요청 (추후에 모든 일정 재요청말고 추가된것만 기존의 일정에 붙혀넣기로 바꾸기)
+          dispatch(fetchAllTrip());
+          dispatch(success("성공적으로 삭제 되었습니다"));
+          setTimeout(() => {
+            dispatch(clear());
+          }, 3000);
+        })
+        .catch((err) => {
+          dispatch({ type: DELETE_MY_TRIP_FAIL });
+          dispatch(error("삭제중 오류가 발생했습니다"));
           setTimeout(() => {
             dispatch(clear());
           }, 3000);
