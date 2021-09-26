@@ -18,11 +18,16 @@ function RecommendTrip() {
 
   const { selectedPlace }: any = useSelector((state: RootState) => state.place);
   const { paths }: any = useSelector((state: RootStateOrAny) => state.trip);
+  const { myTrip }: any = useSelector((state: RootStateOrAny) => state.mytrip);
 
   const { startDate, endDate } = useSelector((state: RootState) => state.date);
 
   const handleOnGoBack = (): void => {
     history.push("/search");
+  };
+
+  const handleOnNext = (): void => {
+    history.push("/my-trip");
   };
 
   const dispatch = useDispatch();
@@ -128,7 +133,11 @@ function RecommendTrip() {
           )}
         </div>
       </section>
-      <PageNav prevOnClick={handleOnGoBack} />
+      <PageNav
+        prevOnClick={handleOnGoBack}
+        nextOnClick={handleOnNext}
+        hideNext={!!!myTrip}
+      />
     </main>
   );
 }
