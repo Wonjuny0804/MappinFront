@@ -1,7 +1,22 @@
 .content {
   display: flex;
-  padding: 18px 35px;
+  padding: 24px 35px;
   position: relative;
+  .edit {
+    position: absolute;
+    right: 35px;
+  }
+  .order {
+    position: relative;
+    font-size: 25px;
+    font-weight: 700;
+    color: #fff;
+    .index {
+      position: absolute;
+      top: 8px;
+      left: 13px;
+    }
+  }
   img {
     margin: 0 44px 0 22px;
     border-radius: 10px;
@@ -16,6 +31,7 @@
       margin-bottom: 12px;
       font-size: 20px;
     }
+
     .keyword {
       display: flex;
       span {
@@ -24,6 +40,12 @@
     }
     p {
       max-width: 480px;
+      max-height: 80px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* number of lines to show */
+      -webkit-box-orient: vertical;
       font-size: 18px;
       color: #707070;
     }

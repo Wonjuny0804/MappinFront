@@ -1,0 +1,177 @@
+.container {
+  position: relative;
+  .mytrip {
+    position: relative;
+    header {
+      margin-top: 40px;
+      h2 {
+        margin: 0;
+        input {
+          text-align: center;
+          font-size: 24px;
+          border: none;
+          border-bottom: 1px solid #60d1a9;
+          padding: 6px;
+        }
+      }
+      .options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 35px;
+        margin-bottom: 0;
+        position: relative;
+      }
+      .editModeOption {
+        justify-content: flex-start;
+      }
+      button {
+        text-transform: uppercase;
+        border: 2px solid #aeaeae;
+        border-radius: 26.5px;
+        text-align: center;
+        min-height: 50px;
+      }
+
+      .dayContainer {
+        display: flex;
+        column-gap: 35px;
+        button {
+          color: #707070;
+          font-weight: 700;
+        }
+        .active {
+          font-weight: 700;
+          background-color: rgba(96, 209, 169, 0.1);
+          color: #60d1a9;
+          border: 2px solid #60d1a9;
+        }
+
+        .newDayBtn {
+          padding: 10px 20px;
+          border-width: 1px;
+
+          svg {
+            width: 20px;
+            height: 15px;
+          }
+        }
+      }
+
+      .optionContainer {
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        button {
+          border: none;
+        }
+        .saveBtn {
+          background-color: #60d1a9;
+          border-radius: 50%;
+          width: 50px;
+          height: 50px;
+          margin-left: 20px;
+          svg {
+            width: 30px;
+          }
+        }
+        .editModeSave {
+          .btnStatus {
+            margin-right: 15px;
+          }
+          span {
+            font-size: 24px;
+            font-weight: 700;
+          }
+
+          width: 128px;
+          border-radius: 26.5px;
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+      h2 {
+        text-align: center;
+      }
+    }
+    .verticalHeader {
+      margin-bottom: 74px;
+    }
+    .sliderContainer {
+      position: relative;
+      .cardContainer {
+        margin: 0 auto;
+        max-width: 910px;
+      }
+      .slider {
+        .card {
+          margin: 30px 15px;
+          min-width: 894px;
+        }
+      }
+      .sliderNav {
+        position: absolute;
+        top: -30px;
+        right: 0;
+        button {
+          &:disabled {
+            pointer-events: none;
+            svg {
+              path {
+                stroke: #d7d7d7;
+              }
+            }
+          }
+          padding: 0;
+          svg {
+            width: 42px;
+            height: 42px;
+          }
+        }
+      }
+    }
+  }
+
+  .showAllBtn {
+    position: fixed;
+    bottom: 80px;
+    right: 30px;
+    left: auto;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0px 8px 25px rgba(96, 209, 169, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.addBtn {
+  margin-top: 50px;
+  font-size: 18px;
+  color: #aeaeae;
+  border: 1px solid #aeaeae;
+  border-radius: 26.5px;
+  padding: 10px;
+  svg {
+    height: 15px;
+    margin-right: 10px;
+  }
+}
+
+.emptyTrip {
+  width: 100%;
+  text-align: center;
+  margin-top: 65px;
+  .createNew {
+    font-weight: 700;
+    font-size: 22px;
+    height: 60px;
+    width: 200px;
+  }
+}

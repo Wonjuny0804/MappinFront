@@ -1,0 +1,14 @@
+.marker {
+  width: 46px;
+  height: 60px;
+  background: url("assets/mappinMarker.png") no-repeat;
+  span {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+  }
+}

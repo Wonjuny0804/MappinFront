@@ -69,14 +69,9 @@ export const fetchRecommendedTrip = (lat: number, lng: number) => {
           }
         })
         .catch((err) => {
-          console.log(err);
           dispatch({
             type: TRIP_FETCH_FAIL,
           });
-          dispatch(error("추천 여행 일정 조회중 에러가 발생했습니다"));
-          setTimeout(() => {
-            dispatch(clear());
-          }, 3000);
         });
     }
   };

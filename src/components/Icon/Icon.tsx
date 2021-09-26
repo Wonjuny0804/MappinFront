@@ -13,9 +13,14 @@ import { ReactComponent as Naver } from "./assets/Naver.svg";
 import { ReactComponent as Spinner } from "./assets/Spinner.svg";
 import { ReactComponent as Marker } from "./assets/Marker.svg";
 import { ReactComponent as Plus } from "./assets/Plus.svg";
+import { ReactComponent as PlusGrey } from "./assets/PlusGrey.svg";
 import { ReactComponent as EmptyHeart } from "./assets/EmptyHeart.svg";
 import { ReactComponent as FillHeart } from "./assets/FillHeart.svg";
 import { ReactComponent as AddPlace } from "./assets/mappinAdd.svg";
+import { ReactComponent as CaretDown } from "./assets/CaretDown.svg";
+import { ReactComponent as Save } from "./assets/Save.svg";
+import { ReactComponent as Edit } from "./assets/Edit.svg";
+import { ReactComponent as Remove } from "./assets/Remove.svg";
 
 export interface IconProps {
   type:
@@ -33,9 +38,14 @@ export interface IconProps {
     | "Spinner"
     | "Marker"
     | "Plus"
+    | "PlusGrey"
     | "EmptyHeart"
     | "FillHeart"
-    | "AddPlace";
+    | "AddPlace"
+    | "CaretDown"
+    | "Save"
+    | "Edit"
+    | "Remove";
 }
 
 function Icon({ type }: IconProps): JSX.Element {
@@ -54,9 +64,14 @@ function Icon({ type }: IconProps): JSX.Element {
     Spinner: <Spinner />,
     Marker: <Marker />,
     Plus: <Plus />,
+    PlusGrey: <PlusGrey />,
     EmptyHeart: <EmptyHeart />,
     FillHeart: <FillHeart />,
-    AddPlace: <AddPlace />
+    AddPlace: <AddPlace />,
+    CaretDown: <CaretDown />,
+    Save: <Save />,
+    Edit: <Edit />,
+    Remove: <Remove />,
   };
 
   return dataObject[type];

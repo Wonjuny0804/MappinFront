@@ -1,12 +1,17 @@
 .cardWrapper {
-  width: 281px;
-  height: 282px;
+  position: relative;
+  min-width: 281px;
+  min-height: 282px;
   overflow: hidden;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
   cursor: pointer;
   transition: box-shadow 0.2s ease 0s;
-
+  .deleteBtn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+  }
   &:hover {
     box-shadow: rgb(0 0 0 / 10%) 0px 6px 12px;
   }
