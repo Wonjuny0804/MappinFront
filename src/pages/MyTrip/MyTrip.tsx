@@ -17,6 +17,7 @@ import {
   postTripAction,
   setNewDayAction,
 } from "redux/storage/mytrip";
+import RouteMap from "components/Map/RouteMap";
 
 // location.state 는 인덱스(숫자일경우)이거나 edit상태여부임
 // location.state 가 edit일때는 세로모드/수정모드가 초기값
@@ -142,6 +143,11 @@ function MyTrip({ location }: any) {
           </p>
         </div>
       </header>
+      <RouteMap
+        places={myTrip?.paths[selectedDay - 1]?.places}
+        width="1200px"
+        height="434px"
+      />
       <section className={styles.container}>
         <div className={styles.mytrip}>
           <header className={verticalMode ? styles.verticalHeader : ""}>

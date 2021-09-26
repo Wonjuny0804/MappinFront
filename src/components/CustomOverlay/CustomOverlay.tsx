@@ -1,6 +1,3 @@
-import React from "react";
-import { IconButton } from "components";
-import styles from "./CustomOverlay.module.scss";
 import "./overlay.scss";
 
 // interface CustomOverlayProps {

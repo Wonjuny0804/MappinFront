@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { Button, Icon, PageNav } from "../../components";
-import Map from "../../components/Map/Map";
 import styles from "./RecommendTrip.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import Slider from "react-slick";
@@ -9,7 +8,7 @@ import TripRecommendCard from "../../components/TripRecommendCard/TripRecommendC
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { fetchRecommendedTrip } from "../../redux/storage/trip";
 import { RootState } from "redux/store";
-import RecommendedMap from "components/Map/RecommendedMap";
+import RouteMap from "components/Map/RouteMap";
 import { setMyTripAction } from "redux/storage/mytrip";
 
 function RecommendTrip() {
@@ -85,8 +84,9 @@ function RecommendTrip() {
       </header>
       <section>
         {/* 임시로 첫번째 path넣어둠. 백에서 존재하지 않는 좌표값을 줘서 현재 마커는 안찍힘 */}
-        <RecommendedMap
-          places={paths && paths[0]}
+
+        <RouteMap
+          places={paths && paths[0].places}
           width="1200px"
           height="434px"
         />
