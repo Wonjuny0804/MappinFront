@@ -118,14 +118,12 @@ function MyTrip({ location }: any) {
   const handleSaveTrip = () => {
     if (editMode) {
       setEditMode(false); // 수정모드 해제
-    } else if (location.state.id) {
+    } else if (location?.state?.id) {
       // 편집일때
-      dispatch(editTripAction(myTrip, location.state.id));
-      history.push("/");
+      dispatch(editTripAction(myTrip, location.state.id, history));
     } else {
       // 새로운 여행 추가일때
-      dispatch(postTripAction(myTrip));
-      history.push("/");
+      dispatch(postTripAction(myTrip, history));
     }
   };
 

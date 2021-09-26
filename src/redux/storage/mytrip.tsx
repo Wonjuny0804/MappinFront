@@ -4,6 +4,7 @@ import { authHeader } from "utils/auth";
 import { clear, error, success } from "./alert";
 import { place } from "./place";
 import { fetchAllTrip } from "./trip";
+import { History } from "history";
 
 const SET_MY_TRIP = "나만의 일정 생성";
 const ADD_NEW_PLACE = "새로운 여행 장소 추가";
@@ -78,7 +79,7 @@ export const editTripTitleAction = (title: string) => {
   return { type: EDIT_MY_TRIP_TITLE, title: title };
 };
 
-export const postTripAction = (myTrip: myTrip) => {
+export const postTripAction = (myTrip: myTrip, history: History) => {
   return (dispatch: any) => {
     const option = {
       headers: {
@@ -103,6 +104,7 @@ export const postTripAction = (myTrip: myTrip) => {
           // 모든일정 재요청 (추후에 모든 일정 재요청말고 추가된것만 기존의 일정에 붙혀넣기로 바꾸기)
           dispatch(fetchAllTrip());
           dispatch(success("성공적으로 저장 되었습니다"));
+          history.push("/");
           setTimeout(() => {
             dispatch(clear());
           }, 3000);
@@ -114,11 +116,21 @@ export const postTripAction = (myTrip: myTrip) => {
             dispatch(clear());
           }, 3000);
         });
+    } else {
+      dispatch({ type: POST_MY_TRIP_FAIL });
+      dispatch(error("로그인후 이용해주세요"));
+      setTimeout(() => {
+        dispatch(clear());
+      }, 3000);
     }
   };
 };
 
-export const editTripAction = (myTrip: myTrip, id: number) => {
+export const editTripAction = (
+  myTrip: myTrip,
+  id: number,
+  history: History
+) => {
   return (dispatch: any) => {
     const option = {
       headers: {
@@ -139,9 +151,9 @@ export const editTripAction = (myTrip: myTrip, id: number) => {
           option
         )
         .then(({ data }) => {
-          console.log(data);
           dispatch({ type: EDIT_MY_TRIP_SUCCESS });
           dispatch(success("성공적으로 저장 되었습니다"));
+          history.push("/");
           setTimeout(() => {
             dispatch(clear());
           }, 3000);
@@ -153,6 +165,12 @@ export const editTripAction = (myTrip: myTrip, id: number) => {
             dispatch(clear());
           }, 3000);
         });
+    } else {
+      dispatch({ type: EDIT_MY_TRIP_FAIL });
+      dispatch(error("권한이 없습니다"));
+      setTimeout(() => {
+        dispatch(clear());
+      }, 3000);
     }
   };
 };

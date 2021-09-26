@@ -1,6 +1,6 @@
 .wrapper {
-  position: absolute;
-  top: 150px;
+  position: fixed;
+  top: 0;
   left: 50px;
   z-index: 50;
   animation: show_alert 1s ease forwards;
