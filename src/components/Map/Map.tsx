@@ -68,8 +68,6 @@ function Map({
           {
             offset: new kakao.maps.Point(12.5, 0),
             alt: "mappin custom marker",
-            // shape: "poly",
-            // coords: "1,20,1,9,5,2,10,0,21,0,27,3,30,9,30,20,17,33,14,33"
           }
         );
 
@@ -123,23 +121,12 @@ function Map({
         }
       };
 
-      // const displayOverlay = (place: placeProps) => {
-      //   const customOverlay = ReactDOMServer.renderToString(<CustomOverlay name={place.place_name} />);
-
-      //   const overlay = new kakao.maps.CustomOverlay({
-      //     map,
-      //     clickable: true,
-      //     content: customOverlay,
-      //     position: new kakao.maps.LatLng(place.y, place.x),
-      //     zIndex: 9
-      //   })
-      // }
-
       const placesSearchCB = (data: Array<placeProps>, status: string) => {
         if (status === kakao.maps.services.Status.OK) {
           const bounds = new kakao.maps.LatLngBounds();
 
           for (let i = 0; i < data.length; i++) {
+            if (i > 5) break;
             displayMarker(data[i]);
             // displayOverlay(data[i]);
             bounds.extend(new kakao.maps.LatLng(data[i].y, data[i].x));
