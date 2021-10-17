@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .schedule {
   max-width: 1200px;
   display: flex;
@@ -9,7 +11,7 @@
     font-size: 22px;
     padding: 30px 80px;
     border-radius: 45px;
-    border: 3px solid #60d1a9;
+    border: 3px solid $main-color;
     min-width: 250px;
     display: flex;
     margin-bottom: 35px;
@@ -18,7 +20,7 @@
       transition: 0.2s max-width ease-out;
     }
     label {
-      color: #60d1a9;
+      color: $main-color;
       font-weight: 700;
       margin-right: 30px;
     }

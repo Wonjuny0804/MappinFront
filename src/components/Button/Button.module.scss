@@ -1,6 +1,8 @@
+@import "../../styles/variables";
+
 .defaultBtn {
   border: none;
-  background-color: #60d1a9;
+  background-color: $main-color;
   color: #ffffff;
   border-radius: 6px;
   padding: 10px 24px;
@@ -15,11 +17,11 @@
   justify-content: center;
   background-color: #fff;
   border-radius: 50%;
-  border: 2px solid #60d1a9;
+  border: 2px solid $main-color;
   width: 62px;
   height: 62px;
   &:hover {
-    background-color: #60d1a9;
+    background-color: $main-color;
     path {
       stroke: #fff;
     }

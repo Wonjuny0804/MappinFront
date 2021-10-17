@@ -1,5 +1,7 @@
+@import "../../styles/variables";
+
 .inputWrapper {
-  border: 3px solid #60d1a9;
+  border: 3px solid $main-color;
   border-radius: 45px;
   background-color: #ffffff;
   font-family: "Spoqa Han Sans Neo";

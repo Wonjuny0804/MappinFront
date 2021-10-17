@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .overlayWrapper {
   background-color: #ffffff;
   border-radius: 20px;
@@ -28,11 +30,11 @@
 .keyword {
   display: inline-block;
   background: #ffffff;
-  border: 1px solid #60d1a9;
+  border: 1px solid $main-color;
   box-sizing: border-box;
   border-radius: 23.75px;
   padding: 8px 22px;
-  color: #60d1a9;
+  color: $main-color;
 }
 
 .addButton {

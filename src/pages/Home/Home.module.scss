@@ -1,5 +1,7 @@
+@import "../../styles/variables";
+
 .themeColor {
-  background: linear-gradient(to right, #60d1a9, #31e0df);
+  background: linear-gradient(to right, $main-color, #31e0df);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

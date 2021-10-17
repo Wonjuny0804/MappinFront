@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .cardWrapper {
   position: relative;
   min-width: 281px;
@@ -21,7 +23,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #60d1a912;
+  background-color: $main-color;
   box-shadow: none;
   border: none;
 }

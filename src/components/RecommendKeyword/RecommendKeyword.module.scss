@@ -1,3 +1,5 @@
+@import "../../styles/variables";
+
 .cardWrapper {
   background: #ffffff;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.12);
@@ -13,11 +15,11 @@
 
   button {
     font: "Spoqa Han sans Neo";
-    color: #60d1a9;
+    color: $main-color;
     font-weight: 400;
     font-size: 15px;
     background: rgba(96, 209, 169, 0.07);
-    border: 1px solid #60d1a9;
+    border: 1px solid $main-color;
     box-sizing: border-box;
     border-radius: 23.75px;
     padding: 6px 22px;

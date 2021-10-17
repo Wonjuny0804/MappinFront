@@ -46,7 +46,7 @@ function RouteMap({ places, width, height, className }: MapProps) {
               path: linePath,
               strokeWeight: 3,
               strokeOpacity: 1,
-              strokeColor: "#60D1A9",
+              strokeColor: "$main-color",
               strokeStyle: "dash",
             });
           }

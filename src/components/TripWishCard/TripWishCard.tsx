@@ -22,7 +22,7 @@ function TripWishCard({
   useEffect(() => {
     if (divImageSectionRef.current) {
       const $div = divImageSectionRef.current;
-      $div.style.backgroundImage = `linear-gradient(90deg, #60D1A9 0%, rgba(96, 209, 169, 0.76) 46.97%, rgba(96, 209, 169, 0) 75.93%), url(${imageURL})`;
+      $div.style.backgroundImage = `linear-gradient(90deg, $main-color 0%, rgba(96, 209, 169, 0.76) 46.97%, rgba(96, 209, 169, 0) 75.93%), url(${imageURL})`;
       $div.style.backgroundPosition = "center";
     }
   }, []);
