@@ -9,7 +9,7 @@ import commonStyles from "../../styles/common.module.scss";
 import PageNav from "../../components/PageNav/PageNav";
 import { useHistory, Link } from "react-router-dom";
 import "../../styles/calander-override.scss";
-// import "styles/calander-override.scss";
+import "styles/calander-override.scss";
 import { setDateAction } from "../../redux/storage/date";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "redux/store";
