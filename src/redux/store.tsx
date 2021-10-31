@@ -1,19 +1,19 @@
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
-import rootReducer from "./storage";
+import { configureStore } from '@reduxjs/toolkit';
+import tripReducer from "./features/tripSlice";
+import searchReducer from "./features/searchSlice";
 
-/* ------------------------------- 미드웰어 ------------------------------ */
 
-const middlewares = [thunk];
 
 /* ---------------------------------- 스토어 --------------------------------- */
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(applyMiddleware(...middlewares))
-);
+
+export const store = configureStore({
+  reducer: {
+    trip: tripReducer,
+    search: searchReducer
+  }
+})
 
 /* ------------------------ 스토어 공급자 ------------------------ */
 

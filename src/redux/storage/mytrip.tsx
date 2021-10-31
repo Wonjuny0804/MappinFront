@@ -226,6 +226,7 @@ export function mytripReducer(state = initialState, action: actionProps) {
         action.newTrip.day - 1
       ].places.slice();
       places.splice(action.newTrip.index, 0, action.newTrip.newPlace);
+      console.log(state, action)
 
       return {
         ...state,
@@ -239,6 +240,14 @@ export function mytripReducer(state = initialState, action: actionProps) {
           }),
         },
       };
+      
+      // return {
+      //   ...state, 
+      //   myTrip: {
+      //     ...state.myTrip,
+      //     paths: state.myTrip.paths.push(action.newTrip)
+      //   }
+      // }
     case DELETE_PLACE:
       return {
         ...state,

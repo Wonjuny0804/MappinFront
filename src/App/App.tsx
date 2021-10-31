@@ -14,7 +14,7 @@ import MyTrip from "pages/MyTrip/MyTrip";
 
 function App() {
   const dispatch = useDispatch();
-  const { message, type } = useSelector((state: RootStateOrAny) => state.alert);
+  // const { message, type } = useSelector((state: RootStateOrAny) => state.alert);
 
   useEffect(() => {
     dispatch(fetchProfile());
@@ -23,7 +23,7 @@ function App() {
   return (
     <div className="App">
       <div className={commonStyles.page}>
-        {message && <Alert content={message} type={type} />}
+        {/* {message && <Alert content={message} type={type} />} */}
       </div>
       <NavBar />
       <Switch>

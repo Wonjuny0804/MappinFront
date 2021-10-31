@@ -13,7 +13,6 @@ import { deleteTripAction, setMyTripAction } from "redux/storage/mytrip";
 import { setPlaceAction } from "redux/storage/place";
 import { searchPlaceAction } from "redux/storage/search";
 import moment from "moment";
-import Alert from "components/Alert/Alert";
 
 function Home() {
   const history = useHistory();

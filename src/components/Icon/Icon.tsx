@@ -1,5 +1,5 @@
 import React from "react";
-import { ReactComponent as Logo } from "./assets/로고.svg";
+import { ReactComponent as Logo } from "./assets/logo.svg";
 import { ReactComponent as NomadMap } from "./assets/Nomads_Map.svg";
 import { ReactComponent as Prev } from "./assets/prev.svg";
 import { ReactComponent as Next } from "./assets/next.svg";

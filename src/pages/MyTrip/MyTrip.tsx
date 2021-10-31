@@ -18,6 +18,7 @@ import {
   setNewDayAction,
 } from "redux/storage/mytrip";
 import RouteMap from "components/Map/RouteMap";
+import { useAppSelector } from "redux/hook";
 
 // location.state 는 인덱스(숫자일경우)이거나 edit상태여부임
 // location.state 가 edit일때는 세로모드/수정모드가 초기값
@@ -27,10 +28,11 @@ function MyTrip({ location }: any) {
   const history = useHistory();
   const slider = useRef<Slider | null>(null);
 
-  const { myTrip }: any = useSelector((state: RootState) => state.mytrip);
+  // const { myTrip }: any = useSelector((state: RootState) => state.mytrip);
+  const myTrip = useAppSelector(state => state.trip);
 
   const handleOnGoBack = (): void => {
-    location?.state?.id ? history.push("/") : history.push("/recommended-trip");
+    location?.state?.id ? history.push("/") : history.goBack();
   };
 
   const dispatch = useDispatch();
@@ -116,17 +118,17 @@ function MyTrip({ location }: any) {
   );
 
   const handleSaveTrip = () => {
-    if (editMode) {
-      setEditMode(false); // 수정모드 해제
-    } else if (location?.state?.id) {
-      // 편집일때
-      dispatch(editTripAction(myTrip, location.state.id, history));
-    } else {
-      // 새로운 여행 추가일때
-      dispatch(postTripAction(myTrip, history));
-    }
+    // if (editMode) {
+    //   setEditMode(false); // 수정모드 해제
+    // } else if (location?.state?.id) {
+    //   // 편집일때
+    //   dispatch(editTripAction(myTrip, location.state.id, history));
+    // } else {
+    //   // 새로운 여행 추가일때
+    //   dispatch(postTripAction(myTrip, history));
+    // }
   };
-
+  console.log(myTrip)
   return (
     <main className={commonStyles.page}>
       <header className={commonStyles.header}>

@@ -12,9 +12,10 @@ import Icon from "../Icon/Icon";
 function NavBar() {
   const history = useHistory();
   const [isModalVisible, setModalVisibility] = useState(false);
-  const { user, loggingIn, loggedIn, loadingProfile } = useSelector(
-    (state: RootStateOrAny) => state.auth
-  );
+  // const { user, loggingIn, loggedIn, loadingProfile } = useSelector(
+  //   (state: RootStateOrAny) => state.auth
+  // );
+  
   const dispatch = useDispatch();
 
   const openModal = () => {
@@ -45,7 +46,7 @@ function NavBar() {
         <div className={styles.inner}>
           <IconButton type="button" icon="Logo" onClick={handleIconClick} />
           <div className={styles.buttonAlign}>
-            {loggedIn ? (
+            {/* {false ? (
               <Button
                 type="button"
                 secondary={true}
@@ -56,7 +57,7 @@ function NavBar() {
               <span className={styles.loading}>
                 <Icon type="Spinner" />
               </span>
-            ) : (
+            ) : ( */}
               <>
                 <Button
                   type="button"
@@ -66,7 +67,7 @@ function NavBar() {
                 />
                 <Button type="button" secondary={false} children="회원 가입" />
               </>
-            )}
+            {/* )} */}
           </div>
         </div>
       </nav>

@@ -13,14 +13,18 @@ import "styles/calander-override.scss";
 import { setDateAction } from "../../redux/storage/date";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "redux/store";
+import { useAppSelector } from "redux/hook";
+import { Itrip } from "core/interface/trip";
 
 function Schedule() {
-  const { startDate: startD, endDate: endD } = useSelector(
-    (state: RootState) => state.date
-  );
+  // const { startDate: startD, endDate: endD } = useSelector(
+  //   (state: RootState) => state.date
+  // );
 
-  const [startDate, setStartDate] = useState<Moment | null>(startD || null);
-  const [endDate, setEndDate] = useState<Moment | null>(endD || null);
+  const myTrip: Itrip = useAppSelector(state => state.trip);
+
+  const [startDate, setStartDate] = useState<Moment | null>(moment(myTrip.startDate) || null);
+  const [endDate, setEndDate] = useState<Moment | null>(moment(myTrip.endDate) || null);
   const [focus, setFocus] = useState<FocusedInputShape | null>("startDate");
 
   const history = useHistory();

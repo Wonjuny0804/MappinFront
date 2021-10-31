@@ -3,14 +3,13 @@ import styles from "./SearchResult.module.scss";
 import commonStyles from "../../styles/common.module.scss";
 import { SearchInput, PageNav, Icon, Map } from "../../components";
 import { useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "redux/store";
+import { useAppSelector } from "redux/hook";
 
 // 이페이지는 필요없을듯
 function SearchResult() {
   const history = useHistory();
-  const keyWord = useSelector((state: RootState) => state.search.searchKeyWord);
 
+  const keyWord = useAppSelector(state => state.search.keyword);
   const handleOnGoBack = (): void => {
     history.goBack();
   };

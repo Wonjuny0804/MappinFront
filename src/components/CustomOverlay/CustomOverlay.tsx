@@ -1,11 +1,5 @@
 import "./overlay.scss";
 
-// interface CustomOverlayProps {
-//   name: string;
-//   keywords?: Array<string>;
-//   onClick?: () => void;
-// }
-
 function CustomOverlay(
   name: string,
   handleSelect: () => void,
