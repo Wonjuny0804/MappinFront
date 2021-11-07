@@ -2,15 +2,20 @@ import { Ipath, Iplace } from '../../core/interface/trip';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../store';
 import { Itrip } from "../../core/interface/trip";
-import moment from "moment";
+import moment, { Moment } from "moment";
 
 // Define the initial state using that type
 const initialState: Itrip = {
   title: "myFirstTrip",
-  startDate: moment().format(),
-  endDate: moment().format(),
+  startDate: moment().format("YYYY.MM.DD"),
+  endDate: moment().format("YYYY.MM.DD"),
   memo: "",
   paths: [],
+}
+
+interface ITripDate {
+  startDate: string;
+  endDate: string;
 }
 
 export const tripSlice = createSlice({
@@ -40,10 +45,17 @@ export const tripSlice = createSlice({
         }
       }
     },
-  },
+    setDate: (state, action: PayloadAction<ITripDate>) => {
+      return {
+        ...state,
+        startDate: action.payload.startDate,
+        endDate: action.payload.endDate
+      }
+    },
+  }
 })
 
-export const { AddPlace } = tripSlice.actions
+export const { AddPlace, setDate } = tripSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectTrip = (state: RootState) => state.trip;

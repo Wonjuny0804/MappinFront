@@ -16,7 +16,7 @@ import moment from "moment";
 
 function Home() {
   const history = useHistory();
-  const { user, loggingIn, loadingProfile } = useSelector(
+  const authInfo = useSelector(
     (state: RootStateOrAny) => state.auth
   );
   const { trip: trips, isLoading } = useSelector(
@@ -25,11 +25,11 @@ function Home() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (user) {
-      dispatch(fetchAllTrip());
-    }
-  }, [dispatch, user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     dispatch(fetchAllTrip());
+  //   }
+  // }, [dispatch, user]);
 
   const handleOnCreate = (): void => {
     // 이전에 작성하던것이 있다면 전부 초기화
@@ -71,10 +71,10 @@ function Home() {
         </div>
       </header>
       <section className={styles.service}>
-        {user ? (
+        {authInfo ? (
           <>
             <h2 className={styles.serviceTitle}>
-              {user.nickName}님의 여행 일정
+              {authInfo}님의 여행 일정
             </h2>
             {/* TODO: trip 인터페이스로 교체 */}
             <section className={styles.mytrip}>

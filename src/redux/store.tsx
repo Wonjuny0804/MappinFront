@@ -2,6 +2,10 @@ import { Provider } from "react-redux";
 import { configureStore } from '@reduxjs/toolkit';
 import tripReducer from "./features/tripSlice";
 import searchReducer from "./features/searchSlice";
+import { authApi } from "./features/auth-api-slice";
+
+
+// API
 
 
 
@@ -11,8 +15,12 @@ import searchReducer from "./features/searchSlice";
 export const store = configureStore({
   reducer: {
     trip: tripReducer,
-    search: searchReducer
-  }
+    search: searchReducer,
+    [authApi.reducerPath]: authApi.reducer
+  },
+  middleware: (getDefaultMiddleWare) => {
+    return getDefaultMiddleWare().concat(authApi.middleware);
+  } 
 })
 
 /* ------------------------ 스토어 공급자 ------------------------ */

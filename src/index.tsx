@@ -4,17 +4,18 @@ import "./index.scss";
 import App from "./App/App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
-import { StoreProvider } from "./redux/store";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { StoreProvider } from "redux/store";
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <StoreProvider>
-      <Router>
-        <App />
-      </Router>
-    </StoreProvider>
+      <StoreProvider>
+        <Router>
+          <App />
+        </Router>
+      </StoreProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

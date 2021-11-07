@@ -10,16 +10,11 @@ import PageNav from "../../components/PageNav/PageNav";
 import { useHistory, Link } from "react-router-dom";
 import "../../styles/calander-override.scss";
 import "styles/calander-override.scss";
-import { setDateAction } from "../../redux/storage/date";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "redux/store";
-import { useAppSelector } from "redux/hook";
+import { useAppSelector, useAppDispatch } from "redux/hook";
 import { Itrip } from "core/interface/trip";
+import { setDate } from "redux/features/tripSlice";
 
 function Schedule() {
-  // const { startDate: startD, endDate: endD } = useSelector(
-  //   (state: RootState) => state.date
-  // );
 
   const myTrip: Itrip = useAppSelector(state => state.trip);
 
@@ -29,7 +24,7 @@ function Schedule() {
 
   const history = useHistory();
 
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const handleOnDateChange = (args: {
     startDate: Moment | null;
@@ -40,9 +35,9 @@ function Schedule() {
   };
 
   const startDateFormatted = startDate
-    ? startDate.format("YYYY.M.D")
+    ? startDate.format("YYYY.MM.D")
     : "출발일";
-  const endDateFormatted = endDate ? endDate.format("M.D") : "종료일";
+  const endDateFormatted = endDate ? endDate.format("YYYY.MM.DD") : "종료일";
   const containerStyle = startDate
     ? { maxWidth: "215px" }
     : { maxWidth: "144px" };
@@ -54,8 +49,12 @@ function Schedule() {
   const handleOnNext = (): void => {
     history.push("/search");
 
+
     if (startDate && endDate) {
-      dispatch(setDateAction(startDate, endDate));
+      dispatch(setDate({
+        startDate: moment(startDate).format("YYYY.MM.DD"),
+        endDate: moment(endDate).format("YYYY.MM.DD")
+      }));
     }
   };
 
